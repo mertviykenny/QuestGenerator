@@ -71,4 +71,30 @@ namespace QuestGenerator
 
         }
     }
+
+
+    class ReputationQuest : SimpleQuest
+    {
+        public ReputationQuest()
+        {
+            this.type = questType.Reputation;
+        }
+
+        override public void generateStrategy()
+        {
+            int current_strategy = rnd1.Next(0, 100);
+            if (current_strategy < 40)
+                startingActions.Add(new Reputation_KillEnenmies());
+            else
+                if(current_strategy>=40 && current_strategy<70)
+                    startingActions.Add(new Reputation_ObtainRareItems());
+                else
+                    startingActions.Add(new Reputation_VisitDangerousPlace());
+
+
+        }
+    }
+
+
+
 }

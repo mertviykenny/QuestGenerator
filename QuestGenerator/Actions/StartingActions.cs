@@ -163,5 +163,53 @@ namespace QuestGenerator
     };
 
 
+    public class Reputation_ObtainRareItems : StartingActions
+    {
+        public Reputation_ObtainRareItems()
+        {
+            name = "ObtainRareItems";
+        }
+        override public void Write(int indent)
+        {
+            actions.Add(new Get());
+            actions.Add(new GoTo());
+            actions.Add(new Give());
+            DisplayActions(indent);
+        }
+    };
+
+
+
+    public class Reputation_KillEnenmies: StartingActions
+    {
+        public Reputation_KillEnenmies()
+        {
+            name = "KillEnenmies";
+        }
+        override public void Write(int indent)
+        {
+            actions.Add(new GoTo());
+            actions.Add(new Kill());
+            actions.Add(new GoTo());
+            actions.Add(new Report());
+            DisplayActions(indent);
+        }
+    };
+
+    public class Reputation_VisitDangerousPlace : StartingActions
+    {
+        public Reputation_VisitDangerousPlace()
+        {
+            name = "VisitDangerousPlace";
+        }
+        override public void Write(int indent)
+        {
+            actions.Add(new GoTo());
+            actions.Add(new GoTo());
+            actions.Add(new Report());
+            DisplayActions(indent);
+        }
+    };
+
 
 }

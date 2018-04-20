@@ -14,7 +14,7 @@ namespace QuestGenerator
             {
                 SimpleQuest.Init(new Random(2));
 
-                ComfortQuest q = new ComfortQuest();
+                ReputationQuest q = new ReputationQuest();
                 q.changeAmountOfStrategies(5);
                 q.Generate();
                 q.DisplayQuest();
