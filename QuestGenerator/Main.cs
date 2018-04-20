@@ -12,12 +12,14 @@ namespace QuestGenerator
         {
             try
             {
-                SimpleQuest.Init(new Random(123));
+                SimpleQuest.Init(new Random(2));
 
+                KnowledgeQuest q = new KnowledgeQuest();
+                q.changeAmountOfStrategies(5);
 
-                WealthQuests q = new WealthQuests();
+                //WealthQuests q = new WealthQuests();
                 q.Generate();
-                q.Write();
+                q.DisplayQuest();
             }
             catch (Exception e)
             {

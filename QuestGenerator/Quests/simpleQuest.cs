@@ -7,7 +7,6 @@ using System.Threading.Tasks;
 namespace QuestGenerator
 {
     public enum questType{Knowledge,Comfort,Reputation,Serenity,Protection,Conquest,Wealth,Ability,Equipment};
-    enum WealthStrategyType {Gatherrawmaterials, Stealvaluablesforresale, Makevaluablesforresale};
 
         abstract public class ISimpleQuest
         {
@@ -18,7 +17,7 @@ namespace QuestGenerator
             protected questType type;
             protected static Random rnd1=null;
             protected int amount_of_strategies;
-            protected List<Strategy> strategies;
+            protected List<StartingActions> startingActions;
 
 
             public SimpleQuest()
@@ -26,7 +25,7 @@ namespace QuestGenerator
                 if (rnd1 == null)
                     throw new Exception("Quest not initialized. Use SimpleQuest.Init() first.");
                 amount_of_strategies = rnd1.Next(1, 5);
-                strategies = new List<Strategy>();
+                startingActions = new List<StartingActions>();
             }
 
             public static void Init(Random r)
@@ -61,7 +60,7 @@ namespace QuestGenerator
                     throw new Exception("changeAmountOfStrategies<=0, should be >=1");
                 }
                 this.amount_of_strategies = new_value;
-                strategies = new List<Strategy>();
+                startingActions = new List<StartingActions>();
             }
 
             public void changeQuestType(questType q)
@@ -69,11 +68,14 @@ namespace QuestGenerator
                 this.type = q;
             }
 
-            public void Write()
+            public void DisplayQuest()
             {
                 Console.WriteLine("Quest:\nType:{0}",type);
-                for (int i = 0; i < amount_of_strategies; i++)
-                    strategies[i].Write(2);
+            for (int i = 0; i < amount_of_strategies; i++)
+            {
+                Console.Write("{0})", i);
+                startingActions[i].Write(2);
+            }
             }
 
         };

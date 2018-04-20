@@ -9,14 +9,14 @@ namespace QuestGenerator
     public abstract class IAction
     {
 
-        abstract public void Write(int indent);
+        abstract public void DisplaySingleAction(int indent);
     }
     public abstract class Action:IAction
     {
         protected static Random rnd1;
         protected string name;
         protected List<Action> subActions=new List<Action>();
-        override public void Write(int indent)
+        override public void DisplaySingleAction(int indent)
         {
             DrawIndent(indent);
             Console.WriteLine("{0}",this.name);
@@ -39,7 +39,7 @@ namespace QuestGenerator
             if (this.subActions.Count != 0)
                 this.subActions.ForEach(delegate (Action a)
                 {
-                    a.Write(indent);
+                    a.DisplaySingleAction(indent);
                 });
         }
     };
@@ -90,7 +90,7 @@ namespace QuestGenerator
             this.name="subQuest";
            // quest = new questGenerator.SimpleQuest(rnd1.Next());
         }
-        override public void Write(int indent)
+        override public void DisplaySingleAction(int indent)
         {
             DrawIndent(indent);
             Console.WriteLine("{0} start", this.name);

@@ -57,13 +57,13 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Action.cs" />
+    <Compile Include="Actions\Action.cs" />
     <Compile Include="Main.cs" />
-    <Compile Include="questGenerator.cs" />
+    <Compile Include="Quests\simpleQuest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="SimpleAction.cs" />
-    <Compile Include="Strategy.cs" />
-    <Compile Include="NamedQuests.cs" />
+    <Compile Include="Actions\SimpleAction.cs" />
+    <Compile Include="Actions\StartingActions.cs" />
+    <Compile Include="Quests\NamedQuests.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
