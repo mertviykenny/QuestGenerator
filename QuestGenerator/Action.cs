@@ -16,7 +16,6 @@ namespace QuestGenerator
         protected static Random rnd1;
         protected string name;
         protected List<Action> subActions=new List<Action>();
-        protected questGenerator.SimpleQuest subQuest;
         override public void Write(int indent)
         {
             DrawIndent(indent);
@@ -37,7 +36,7 @@ namespace QuestGenerator
         protected void writeSubActions(int indent)
         {
             indent = indent + 2;
-            if (this.subActions.Count != 0 || this.subQuest != null)
+            if (this.subActions.Count != 0)
                 this.subActions.ForEach(delegate (Action a)
                 {
                     a.Write(indent);
@@ -45,35 +44,43 @@ namespace QuestGenerator
         }
     };
 
-    public class Repair : Action {
-        public Repair()
-        {
-            this.name = "Repair";
-        }
-    };
 
     public class Get : Action
     {
         public Get()
         {
             this.name = "Get";
+            int current_action = rnd1.Next(0,4);
+            if (current_action == 0)
+            {
+                subActions.Add(new Nothing());
+            }
+            else
+            {
+                if (current_action == 1)
+                {
+                    subActions.Add(new Steal());
+                }
+                else
+                {
+                    if (current_action == 2)
+                    {
+                        subActions.Add(new GoTo());
+                        subActions.Add(new Gather());
+                    }
+                    else
+                    {
+                        subActions.Add(new GoTo());
+                        subActions.Add(new Get());
+                        subActions.Add(new GoTo());
+                        subActions.Add(new subQuest());
+                        subActions.Add(new Exchange());
+                    }
+                }
+            }
         }
     };
-    public class Nothing : Action//e
-    {
-        public Nothing()
-        {
-            this.name = "Nothing";
-        }
-    }
 
-    public class Listen : Action
-    {
-        public Listen()
-        {
-            this.name = "Listen";
-        }
-    }
 
     public class subQuest : Action
     {
@@ -92,21 +99,7 @@ namespace QuestGenerator
             Console.WriteLine("{0} end", this.name);
         }
     }
-    public class Read : Action
-    {
-        public  Read()
-        {
-            this.name = "Read";
-        }
-    }
 
-    public class Give : Action
-    {
-        public  Give()
-        {
-            this.name = "Give";
-        }
-    }
     public class Learn : Action
     {
         public Learn()
@@ -144,13 +137,6 @@ namespace QuestGenerator
             }
         }
     }
-    public class Explore : Action
-    {
-        public Explore()
-        {
-            this.name = "Explore";
-        }
-    }
     public class GoTo : Action
     {
         public GoTo()
@@ -177,6 +163,19 @@ namespace QuestGenerator
         public Steal()
         {
             this.name = "Steal";
+            int current_action = rnd1.Next();
+            if (current_action == 0)
+            {
+                subActions.Add(new GoTo());
+                subActions.Add(new Stealth());
+                subActions.Add(new Take());
+            }
+            else
+            {
+                subActions.Add(new GoTo());
+                subActions.Add(new Kill());
+                subActions.Add(new Take());
+            }
         }
     };
 }
