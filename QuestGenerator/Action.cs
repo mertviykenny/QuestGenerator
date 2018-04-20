@@ -6,13 +6,18 @@ using System.Threading.Tasks;
 
 namespace QuestGenerator
 {
-    public abstract class Action
+    public abstract class IAction
+    {
+
+        abstract public void Write(int indent);
+    }
+    public abstract class Action:IAction
     {
         protected static Random rnd1;
         protected string name;
         protected List<Action> subActions=new List<Action>();
-        protected Program.SimpleQuest subQuest;
-        public void Write(int indent)
+        protected questGenerator.SimpleQuest subQuest;
+        override public void Write(int indent)
         {
             DrawIndent(indent);
             Console.WriteLine("{0}",this.name);
@@ -72,9 +77,19 @@ namespace QuestGenerator
 
     public class subQuest : Action
     {
+        QuestGenerator.questGenerator.SimpleQuest quest;
         public  subQuest()
         {
             this.name="subQuest";
+            quest = new questGenerator.SimpleQuest(rnd1.Next());
+        }
+        override public void Write(int indent)
+        {
+            DrawIndent(indent);
+            Console.WriteLine("{0} start", this.name);
+            writeSubActions(indent);
+            quest.Write();
+            Console.WriteLine("{0} end", this.name);
         }
     }
     public class Read : Action

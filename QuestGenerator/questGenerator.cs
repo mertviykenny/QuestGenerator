@@ -9,7 +9,7 @@ namespace QuestGenerator
     public enum questType{Knowledge,Comfort,Reputation,Serenity,Protection,Conquest,Wealth,Ability,Equipment};
     enum WealthStrategyType {Gatherrawmaterials, Stealvaluablesforresale, Makevaluablesforresale};
 
-    public class Program
+    public class questGenerator
     {
         public class SimpleQuest {
             questType type;
@@ -86,7 +86,7 @@ namespace QuestGenerator
         {
             try
             {
-                SimpleQuest s = new SimpleQuest(8654);
+                SimpleQuest s = new SimpleQuest(12367);
                 s.changeQuestType(questType.Wealth);
                 s.changeAmountOfStrategies(4);
                 s.Generate();
