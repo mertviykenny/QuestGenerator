@@ -9,18 +9,49 @@ namespace QuestGenerator
     public enum questType{Knowledge,Comfort,Reputation,Serenity,Protection,Conquest,Wealth,Ability,Equipment};
     enum WealthStrategyType {Gatherrawmaterials, Stealvaluablesforresale, Makevaluablesforresale};
 
-    public class questGenerator
-    {
-        public class SimpleQuest {
-            questType type;
-            Random rnd1;
-            int amount_of_strategies;
-            List<Strategy> strategies;
+        abstract public class ISimpleQuest
+        {
+            abstract public void generateStrategy();
+        }
+
+        abstract public class SimpleQuest:ISimpleQuest{
+            protected questType type;
+            protected static Random rnd1=null;
+            protected int amount_of_strategies;
+            protected List<Strategy> strategies;
+
+
+            public SimpleQuest()
+            {
+                if (rnd1 == null)
+                    throw new Exception("Quest not initialized. Use SimpleQuest.Init() first.");
+                amount_of_strategies = rnd1.Next(1, 5);
+                strategies = new List<Strategy>();
+            }
+
+            public static void Init(Random r)
+            {
+                rnd1 = r;
+                Action.Init(rnd1);
+            }
+
+            public void Generate()
+            {
+                for (int i = 0; i < amount_of_strategies; i++)
+                {
+                    generateStrategy();
+                }
+            }
 
             questType GenerateRandomQuestType()
             {
                 Array values = Enum.GetValues(typeof(questType));
                 return (questType)values.GetValue(rnd1.Next(values.Length));
+            }
+
+            public void ChangeRandom(Random r)
+            {
+                Init(r);
             }
 
             public void changeAmountOfStrategies(int new_value)
@@ -33,46 +64,10 @@ namespace QuestGenerator
                 strategies = new List<Strategy>();
             }
 
-            public SimpleQuest(int seed)
-            {
-                this.rnd1 = new Random(seed);
-                Action.Init(rnd1);
-                this.type = GenerateRandomQuestType();
-                amount_of_strategies = rnd1.Next(1, 5);
-                strategies = new List<Strategy>();
-            }
-
             public void changeQuestType(questType q)
             {
                 this.type = q;
             }
-            public void Generate()
-            {
-                if (this.type == questType.Wealth)
-                {
-                    generateWealthQuest();
-                }
-
-            }
-            void generateWealthStrategy()
-            {
-                int current_strategy = rnd1.Next(0,100);//45% Wealth_GatherRawMaterials,45% Wealth_StealValuablesForResale, 10% Wealth_MakeValuablesForResale
-                if (current_strategy <45)
-                    strategies.Add(new Wealth_GatherRawMaterials());
-                else
-                if (current_strategy >=45 && current_strategy < 90)
-                    strategies.Add(new Wealth_StealValuablesForResale());
-                else
-                    strategies.Add(new Wealth_MakeValuablesForResale());
-            }
-            void generateWealthQuest()
-            {
-                for (int i = 0; i < amount_of_strategies; i++)
-                {
-                    generateWealthStrategy();
-                }
-            }
-
 
             public void Write()
             {
@@ -82,20 +77,5 @@ namespace QuestGenerator
             }
 
         };
-        static void Main(string[] args)
-        {
-            try
-            {
-                SimpleQuest s = new SimpleQuest(12367);
-                s.changeQuestType(questType.Wealth);
-                s.changeAmountOfStrategies(4);
-                s.Generate();
-                s.Write();
-            }
-            catch (Exception e)
-            {
-                Console.WriteLine("{0}", e.GetBaseException());
-            }
-        }
-    }
+    
 }

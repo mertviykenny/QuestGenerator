@@ -84,18 +84,19 @@ namespace QuestGenerator
 
     public class subQuest : Action
     {
-        QuestGenerator.questGenerator.SimpleQuest quest;
+        SimpleQuest quest;
         public  subQuest()
         {
             this.name="subQuest";
-            quest = new questGenerator.SimpleQuest(rnd1.Next());
+           // quest = new questGenerator.SimpleQuest(rnd1.Next());
         }
         override public void Write(int indent)
         {
             DrawIndent(indent);
             Console.WriteLine("{0} start", this.name);
             writeSubActions(indent);
-            quest.Write();
+            //  quest.Write();
+            DrawIndent(indent);
             Console.WriteLine("{0} end", this.name);
         }
     }
