@@ -130,6 +130,38 @@ namespace QuestGenerator
     };
 
 
-
-
+    public class Comfort_ObtainLuxuries : StartingActions
+    {
+        public Comfort_ObtainLuxuries()
+        {
+            name = "ObtainLuxuries";
         }
+        override public void Write(int indent)
+        {
+            actions.Add(new Get());
+            actions.Add(new GoTo());
+            actions.Add(new Give());
+            DisplayActions(indent);
+        }
+    };
+
+
+    public class Comfort_KillPests : StartingActions
+    {
+        public Comfort_KillPests()
+        {
+            name = "KillPests";
+        }
+        override public void Write(int indent)
+        {
+            actions.Add(new GoTo());
+            actions.Add(new Damage());
+            actions.Add(new GoTo());
+            actions.Add(new Report());
+            DisplayActions(indent);
+        }
+    };
+
+
+
+}

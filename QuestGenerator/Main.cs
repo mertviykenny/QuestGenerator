@@ -14,10 +14,8 @@ namespace QuestGenerator
             {
                 SimpleQuest.Init(new Random(2));
 
-                KnowledgeQuest q = new KnowledgeQuest();
+                ComfortQuest q = new ComfortQuest();
                 q.changeAmountOfStrategies(5);
-
-                //WealthQuests q = new WealthQuests();
                 q.Generate();
                 q.DisplayQuest();
             }

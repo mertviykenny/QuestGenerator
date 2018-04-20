@@ -51,4 +51,24 @@ namespace QuestGenerator
                 startingActions.Add(new Knowledge_Spy());
         }
     }
+
+
+
+    class ComfortQuest : SimpleQuest
+    {
+        public ComfortQuest()
+        {
+            this.type = questType.Comfort;
+        }
+
+        override public void generateStrategy()
+        {
+            int current_strategy = rnd1.Next(0, 100);
+            if (current_strategy < 50)
+                startingActions.Add(new Comfort_KillPests());
+            else
+                startingActions.Add(new Comfort_ObtainLuxuries());
+
+        }
+    }
 }
