@@ -47,6 +47,13 @@ namespace QuestGenerator
                 }
             }
         }
+
+        override public void DisplaySingleAction(int indent)
+        {
+            DrawIndent(indent);
+            Console.WriteLine("{0} {1}", this.name, this.ObjectName);
+            writeSubActions(indent);
+        }
     };
 
 
@@ -73,7 +80,7 @@ namespace QuestGenerator
     {
         public Learn()
         {
-            this.name = "Learn";
+            this.name = "Learn information";
             generateStartingAction();
         }
 
@@ -113,11 +120,16 @@ namespace QuestGenerator
     }
     public class GoTo : Action
     {
+        int x;
+        int y;
         public GoTo()
         {
             this.name = "GoTo";
             generateStartingAction();
+            generateX();
+            generateY();
         }
+
         void generateStartingAction()
         {
             int next_action = rnd1.Next(0, 3);
@@ -133,14 +145,32 @@ namespace QuestGenerator
                     this.subActions.Add(new Explore());
             }
         }
+
+        void generateX()
+        {
+            this.x = rnd1.Next(0, 100);
+        }
+        void generateY()
+        {
+            this.y = rnd1.Next(0, 100);
+        }
+
+        override public void DisplaySingleAction(int indent)
+        {
+            DrawIndent(indent);
+            Console.WriteLine("{0} {1}:{2}", this.name, this.x,this.y);
+            writeSubActions(indent);
+        }
     };
 
 
     public class Steal : Action
     {
+        string ObjectName;
         public Steal()
         {
             this.name = "Steal";
+            this.ObjectName = generateObject();
             generateStartingAction();
         }
 
@@ -159,6 +189,13 @@ namespace QuestGenerator
                 subActions.Add(new Kill());
                 subActions.Add(new Take());
             }
+        }
+
+        override public void DisplaySingleAction(int indent)
+        {
+            DrawIndent(indent);
+            Console.WriteLine("{0} {1}", this.name, this.ObjectName);
+            writeSubActions(indent);
         }
     };
 }

@@ -250,7 +250,7 @@ namespace QuestGenerator
         override public void DisplaySingleAction(int indent)
         {
             DrawIndent(indent);
-            Console.WriteLine("{0} on {1}", this.name, this.ObjectName);
+            Console.WriteLine("{0} {1}", this.name, this.ObjectName);
             writeSubActions(indent);
         }
     };
