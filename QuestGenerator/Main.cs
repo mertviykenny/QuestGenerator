@@ -12,7 +12,7 @@ namespace QuestGenerator
         {
             try
             {
-                SimpleQuest.Init(new Random(2));
+                SimpleQuest.Init(new Random(6344));
 
                 ReputationQuest q = new ReputationQuest();
                 q.changeAmountOfStrategies(5);

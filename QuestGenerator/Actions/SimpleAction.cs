@@ -12,6 +12,15 @@ namespace QuestGenerator
         {
             this.name = "Nothing";
         }
+
+        override public void DisplaySingleAction(int indent)
+        {
+            /*
+            DrawIndent(indent);
+            Console.WriteLine("{0}", this.name);
+            writeSubActions(indent);
+            */
+        }
     }
 
     public class Kill : Action
@@ -123,7 +132,7 @@ namespace QuestGenerator
     {
         public Explore()
         {
-            this.name = "Explore";
+            this.name = "Explore/Check";
         }
     }
 
