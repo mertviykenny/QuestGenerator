@@ -61,9 +61,17 @@ namespace QuestGenerator
 
     public class Defend : Action
     {
+        string NPCName;
         public Defend()
         {
             this.name = "Defend";
+            this.NPCName = generateNPC();
+        }
+        override public void DisplaySingleAction(int indent)
+        {
+            DrawIndent(indent);
+            Console.WriteLine("{0} {1}", this.name, this.NPCName);
+            writeSubActions(indent);
         }
     }
 
@@ -87,9 +95,18 @@ namespace QuestGenerator
 
     public class Exchange : Action
     {
+        string ObjectName;
         public Exchange()
         {
             this.name = "Exchange";
+            ObjectName = generateObject();
+        }
+
+        override public void DisplaySingleAction(int indent)
+        {
+            DrawIndent(indent);
+            Console.WriteLine("{0} {1}", this.name, this.ObjectName);
+            writeSubActions(indent);
         }
     }
 
@@ -121,9 +138,17 @@ namespace QuestGenerator
 
     public class Give : Action
     {
+        string ObjectName;
         public Give()
         {
             this.name = "Give";
+            ObjectName = generateObject();
+        }
+        override public void DisplaySingleAction(int indent)
+        {
+            DrawIndent(indent);
+            Console.WriteLine("{0} {1}", this.name, this.ObjectName);
+            writeSubActions(indent);
         }
     }
 
@@ -146,7 +171,6 @@ namespace QuestGenerator
 
     public class Read : Action
     {
-        string NPCName;
         public Read()
         {
             this.name = "Read";
@@ -157,7 +181,7 @@ namespace QuestGenerator
     {
         public Repair()
         {
-            this.name = "Repair";
+            this.name = "Repair or create";
         }
     };
 
@@ -207,9 +231,18 @@ namespace QuestGenerator
 
     public class Take : Action
     {
+        string ObjectName;
         public Take()
         {
             this.name = "Take";
+            this.ObjectName = generateObject();
+        }
+
+        override public void DisplaySingleAction(int indent)
+        {
+            DrawIndent(indent);
+            Console.WriteLine("{0} on {1}", this.name, this.ObjectName);
+            writeSubActions(indent);
         }
     };
 
