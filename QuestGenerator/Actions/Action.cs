@@ -42,6 +42,37 @@ namespace QuestGenerator
                     a.DisplaySingleAction(indent);
                 });
         }
+
+
+        protected string generateNPC()
+        {
+            string[] prefixes = { "Elder", "Magician", "Warrior", "Ancient", "Brilliant", "Seeker", "Timeless", "Unbound", "Friendly", "Betrayed" };
+            string[] names = { "Bond", "Mankrik", "Meto", "Merayl", "Perculia", "Alyssia", "Chargla", "Dalron", "Daakara", "Kilnara" };
+            string[] affixes = { "of the Sun", "of the Moon", "bloody", "the traitor", " the Warrior", "of Odyn", "the Mage", "the fierce", "of the Forest", "the Awesome" };
+            int action = rnd1.Next(0, 10);
+            if (action < 2)
+            {
+                return names[rnd1.Next(0, names.Count())];
+            }
+            else
+            {
+                if (action < 5)
+                {
+                    return prefixes[rnd1.Next(0, prefixes.Count())] + " " + names[rnd1.Next(0, names.Count())];
+                }
+                else
+                {
+                    if (action < 8)
+                    {
+                        return names[rnd1.Next(0, names.Count())] + " " + affixes[rnd1.Next(0, affixes.Count())];
+                    }
+                    else
+                    {
+                        return prefixes[rnd1.Next(0, prefixes.Count())] + " "+names[rnd1.Next(0, names.Count())] + " " + affixes[rnd1.Next(0, affixes.Count())];
+                    }
+                }
+            }
+        }
     };
 
 

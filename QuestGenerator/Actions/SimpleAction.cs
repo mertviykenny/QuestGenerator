@@ -16,16 +16,37 @@ namespace QuestGenerator
 
     public class Kill : Action
     {
+        string NPCName;
         public Kill()
         {
             this.name = "Kill";
+            this.NPCName = generateNPC();
+        }
+
+        override public void DisplaySingleAction(int indent)
+        {
+            DrawIndent(indent);
+            Console.WriteLine("{0} {1}", this.name,this.NPCName);
+            writeSubActions(indent);
         }
     }; 
+
+
+
     public class Capture : Action
     {
+        string NPCName;
         public Capture()
         {
             this.name = "Capture";
+            this.NPCName = generateNPC();
+        }
+
+        override public void DisplaySingleAction(int indent)
+        {
+            DrawIndent(indent);
+            Console.WriteLine("{0} {1}", this.name, this.NPCName);
+            writeSubActions(indent);
         }
     }
 
@@ -48,9 +69,18 @@ namespace QuestGenerator
 
     public class Escort : Action
     {
+        string NPCName;
         public Escort()
         {
             this.name = "Escort";
+            this.NPCName = generateNPC();
+        }
+
+        override public void DisplaySingleAction(int indent)
+        {
+            DrawIndent(indent);
+            Console.WriteLine("{0} {1}", this.name, this.NPCName);
+            writeSubActions(indent);
         }
     }
 
@@ -99,14 +129,24 @@ namespace QuestGenerator
 
     public class Listen : Action
     {
+        string NPCName;
         public Listen()
         {
             this.name = "Listen";
+            this.NPCName = generateNPC();
+        }
+
+        override public void DisplaySingleAction(int indent)
+        {
+            DrawIndent(indent);
+            Console.WriteLine("{0} to {1}", this.name, this.NPCName);
+            writeSubActions(indent);
         }
     }
 
     public class Read : Action
     {
+        string NPCName;
         public Read()
         {
             this.name = "Read";
@@ -124,17 +164,35 @@ namespace QuestGenerator
 
     public class Report : Action
     {
+        string NPCName;
         public Report()
         {
             this.name = "Report";
+            this.NPCName = generateNPC();
+        }
+
+        override public void DisplaySingleAction(int indent)
+        {
+            DrawIndent(indent);
+            Console.WriteLine("{0} to {1}", this.name, this.NPCName);
+            writeSubActions(indent);
         }
     };
 
     public class Spy : Action
     {
+
+        string NPCName;
         public Spy()
         {
             this.name = "Spy";
+            this.NPCName = generateNPC();
+        }
+        override public void DisplaySingleAction(int indent)
+        {
+            DrawIndent(indent);
+            Console.WriteLine("{0} on {1}", this.name, this.NPCName);
+            writeSubActions(indent);
         }
     };
 

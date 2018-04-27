@@ -71,12 +71,14 @@ namespace QuestGenerator
             public void DisplayQuest()
             {
                 Console.WriteLine("Quest:\nType:{0}",type);
-            for (int i = 0; i < amount_of_strategies; i++)
-            {
-                Console.Write("{0})", i);
-                startingActions[i].Write(2);
+                for (int i = 0; i < amount_of_strategies; i++)
+                {
+                    Console.Write("{0})", i);
+                    startingActions[i].Write(2);
+                }
             }
-            }
+
+
 
         };
     
