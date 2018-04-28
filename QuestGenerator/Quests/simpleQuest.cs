@@ -75,9 +75,6 @@ namespace QuestGenerator
 
         public void DisplayQuest()
             {
-                DrawIndent(this.indent);
-                Console.WriteLine("Quest:");
-                DrawIndent(this.indent);
                 Console.WriteLine("Type:{0}",type);
                 for (int i = 0; i < amount_of_starting_actions; i++)
                 {

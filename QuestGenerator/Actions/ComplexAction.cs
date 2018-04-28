@@ -88,7 +88,7 @@ namespace QuestGenerator
         {
             indent = indent + quest_indent;
             DrawIndent(indent);
-            Console.WriteLine("{0} start", this.name);
+            Console.Write("{0} started, ", this.name);
             writeSubActions(indent);
             quest.Generate();
             quest.ChangeIndent(indent);
