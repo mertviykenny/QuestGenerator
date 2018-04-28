@@ -62,12 +62,6 @@ namespace QuestGenerator
                 this.amount_of_strategies = new_value;
                 startingActions = new List<StartingActions>();
             }
-        /*
-            public void changeQuestType(questType q)
-            {
-                this.type = q;
-            }
-            */
             public void DisplayQuest()
             {
                 Console.WriteLine("Quest:\nType:{0}",type);

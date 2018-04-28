@@ -211,5 +211,123 @@ namespace QuestGenerator
         }
     };
 
+    public class Serenity_Revenge : StartingActions
+    {
+        public Serenity_Revenge()
+        {
+            name = "Revenge";
+        }
+        override public void Write(int indent)
+        {
+            actions.Add(new GoTo());
+            actions.Add(new Damage());
+            DisplayActions(indent);
+        }
+    }
+
+    public class Serenity_Capture1 : StartingActions
+    {
+        public Serenity_Capture1()
+        {
+            name = "Capture1";
+        }
+        override public void Write(int indent)
+        {
+            actions.Add(new Get());
+            actions.Add(new GoTo());
+            actions.Add(new Use());
+            actions.Add(new GoTo());
+            actions.Add(new Give());
+            DisplayActions(indent);
+        }
+    }
+
+    public class Serenity_Capture2 : StartingActions
+    {
+        public Serenity_Capture2()
+        {
+            name = "Capture2";
+        }
+        override public void Write(int indent)
+        {
+            actions.Add(new Get());
+            actions.Add(new GoTo());
+            actions.Add(new Use());
+            actions.Add(new Capture());
+            actions.Add(new GoTo());
+            actions.Add(new Give());
+            DisplayActions(indent);
+        }
+    }
+
+
+    public class Serenity_CheckOnNPC1 : StartingActions
+    {
+        public Serenity_CheckOnNPC1()
+        {
+            name = "CheckOnNPC1";
+        }
+        override public void Write(int indent)
+        {
+            actions.Add(new GoTo());
+            actions.Add(new Listen());
+            actions.Add(new GoTo());
+            actions.Add(new Report());
+            DisplayActions(indent);
+        }
+    }
+
+
+    public class Serenity_CheckOnNPC2 : StartingActions
+    {
+        public Serenity_CheckOnNPC2()
+        {
+            name = "CheckOnNPC2";
+        }
+        override public void Write(int indent)
+        {
+            actions.Add(new GoTo());
+            actions.Add(new Take());
+            actions.Add(new GoTo());
+            actions.Add(new Give());
+            DisplayActions(indent);
+        }
+    }
+
+    public class Serenity_RecoverLost : StartingActions
+    {
+        public Serenity_RecoverLost()
+        {
+            name = "RecoverLost";
+        }
+        override public void Write(int indent)
+        {
+            actions.Add(new Get());
+            actions.Add(new GoTo());
+            actions.Add(new Give());
+            DisplayActions(indent);
+        }
+    }
+
+    public class Serenity_RescueCaptured : StartingActions
+    {
+        public Serenity_RescueCaptured()
+        {
+            name = "RescueCaptured";
+        }
+        override public void Write(int indent)
+        {
+            actions.Add(new GoTo());
+            actions.Add(new Damage());
+            actions.Add(new Escort());
+            actions.Add(new GoTo());
+            actions.Add(new Report());
+            DisplayActions(indent);
+        }
+    }
+
+
+
+
 
 }

@@ -108,7 +108,7 @@ namespace QuestGenerator
         public Exchange()
         {
             this.name = "Exchange";
-            ObjectName = generateObject();
+            this.ObjectName = generateObject();
         }
 
         override public void DisplaySingleAction(int indent)
@@ -151,7 +151,7 @@ namespace QuestGenerator
         public Give()
         {
             this.name = "Give";
-            ObjectName = generateObject();
+            this.ObjectName = generateObject();
         }
         override public void DisplaySingleAction(int indent)
         {
