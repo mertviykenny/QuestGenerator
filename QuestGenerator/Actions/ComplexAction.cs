@@ -41,7 +41,9 @@ namespace QuestGenerator
                         subActions.Add(new GoTo());
                         subActions.Add(new Get());
                         subActions.Add(new GoTo());
-                        subActions.Add(new subQuest());
+                        subQuest sq = new subQuest();
+                        sq.ChangeIndent(2);
+                        subActions.Add(sq);
                         subActions.Add(new Exchange());
                     }
                 }
@@ -59,7 +61,8 @@ namespace QuestGenerator
 
     public class subQuest : Action
     {
-        SimpleQuest quest;
+        public SimpleQuest quest;
+        int quest_indent = 0;
         public subQuest()
         {
             this.name = "subQuest";
@@ -77,19 +80,25 @@ namespace QuestGenerator
             if (action == 5)
                 quest = new ConquestQuest();
             if (action == 6)
-                quest = new WealthQuests();
+                quest = new WealthQuest();
             if (action == 7)
                 quest = new EquipmentQuest();
         }
         override public void DisplaySingleAction(int indent)
         {
+            indent = indent + quest_indent;
             DrawIndent(indent);
             Console.WriteLine("{0} start", this.name);
             writeSubActions(indent);
             quest.Generate();
+            quest.ChangeIndent(indent);
             quest.DisplayQuest();
             DrawIndent(indent);
             Console.WriteLine("{0} end", this.name);
+        }
+        public void ChangeIndent(int new_value)
+        {
+            this.quest_indent = new_value;
         }
     }
 
@@ -113,7 +122,9 @@ namespace QuestGenerator
                 if (next_action == 1)
                 {
                     this.subActions.Add(new GoTo());
-                    subActions.Add(new subQuest());
+                    subQuest sq = new subQuest();
+                    sq.ChangeIndent(2);
+                    subActions.Add(sq);
                     this.subActions.Add(new Listen());
                 }
                 else
@@ -127,7 +138,9 @@ namespace QuestGenerator
                     else
                     {
                         this.subActions.Add(new Get());
-                        subActions.Add(new subQuest());
+                        subQuest sq = new subQuest();
+                        sq.ChangeIndent(2);
+                        subActions.Add(sq);
                         this.subActions.Add(new Give());
                         this.subActions.Add(new Listen());
                     }

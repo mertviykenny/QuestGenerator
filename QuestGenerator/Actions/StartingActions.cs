@@ -11,6 +11,14 @@ namespace QuestGenerator
         public abstract void Write(int indent);
         protected string name;
         protected List<Action> actions = new List<Action>();
+        public void DrawIndent(int indent)
+        {
+            for (int i = 0; i < indent; i++)
+            {
+                Console.Write(" ");
+            }
+        }
+
         protected void DisplayActions(int indent)
         {
             Console.WriteLine("Type:{0}", name);
@@ -18,7 +26,6 @@ namespace QuestGenerator
             {
                 a.DisplaySingleAction(indent);
             });
-            Console.Write("\n");
         }
     };
 

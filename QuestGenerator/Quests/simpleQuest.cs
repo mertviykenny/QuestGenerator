@@ -16,6 +16,7 @@ namespace QuestGenerator
             protected questType type;
             protected static Random rnd1=null;
             protected int amount_of_starting_actions;
+            protected int indent = 0;
         protected List<StartingActions> startingActions;
 
 
@@ -32,7 +33,10 @@ namespace QuestGenerator
                 rnd1 = r;
                 Action.Init(rnd1); 
             }
-
+        public void ChangeIndent(int new_value)
+        {
+            this.indent = new_value;
+        }
             public void Generate()
             {
                 for (int i = 0; i < amount_of_starting_actions; i++)
@@ -61,14 +65,25 @@ namespace QuestGenerator
                 this.amount_of_starting_actions = new_value;
                 startingActions = new List<StartingActions>();
             }
-
-            public void DisplayQuest()
+        public void DrawIndent(int indent)
+        {
+            for (int i = 0; i < indent; i++)
             {
-                Console.WriteLine("Quest:\nType:{0}",type);
+                Console.Write(" ");
+            }
+        }
+
+        public void DisplayQuest()
+            {
+                DrawIndent(this.indent);
+                Console.WriteLine("Quest:");
+                DrawIndent(this.indent);
+                Console.WriteLine("Type:{0}",type);
                 for (int i = 0; i < amount_of_starting_actions; i++)
                 {
+                    DrawIndent(this.indent);
                     Console.Write("{0})", i);
-                    startingActions[i].Write(2);
+                    startingActions[i].Write(indent+2);
                 }
             }
 

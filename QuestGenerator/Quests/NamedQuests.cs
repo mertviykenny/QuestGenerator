@@ -8,9 +8,9 @@ using System.Threading.Tasks;
 namespace QuestGenerator
 {
 
-    class WealthQuests : SimpleQuest
+    class WealthQuest : SimpleQuest
     {
-        public WealthQuests()
+        public WealthQuest()
         {
             this.type = questType.Wealth;
         }
