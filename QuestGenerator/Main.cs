@@ -14,8 +14,8 @@ namespace QuestGenerator
             {
                 SimpleQuest.Init(new Random(6344));
 
-                SerenityQuest q = new SerenityQuest();
-                q.changeAmountOfStrategies(5);
+                ProtectionQuest q = new ProtectionQuest();
+                q.changeAmountOfStartingActions(5);
                 q.Generate();
                 q.DisplayQuest();
             }

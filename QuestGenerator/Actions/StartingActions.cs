@@ -10,7 +10,7 @@ namespace QuestGenerator
     {
         public abstract void Write(int indent);
         protected string name;
-        protected List<Action> actions=new List<Action>();
+        protected List<Action> actions = new List<Action>();
         protected void DisplayActions(int indent)
         {
             Console.WriteLine("Type:{0}", name);
@@ -63,7 +63,7 @@ namespace QuestGenerator
     }
 
 
-    public class Knowledge_DeliverItemForStudy: StartingActions
+    public class Knowledge_DeliverItemForStudy : StartingActions
     {
         public Knowledge_DeliverItemForStudy()
         {
@@ -180,7 +180,7 @@ namespace QuestGenerator
 
 
 
-    public class Reputation_KillEnenmies: StartingActions
+    public class Reputation_KillEnenmies : StartingActions
     {
         public Reputation_KillEnenmies()
         {
@@ -325,6 +325,113 @@ namespace QuestGenerator
             DisplayActions(indent);
         }
     }
+
+
+    public class Protection_Attack:StartingActions
+    {
+        public Protection_Attack()
+        {
+            name = "Attack";
+        }
+        override public void Write(int indent)
+        {
+            actions.Add(new GoTo());
+            actions.Add(new Damage());
+            actions.Add(new GoTo());
+            actions.Add(new Report());
+            DisplayActions(indent);
+        }
+    }
+
+    public class Protection_TreatOrRepair1 : StartingActions
+    {
+        public Protection_TreatOrRepair1()
+        {
+            name = "TreatOrRepair1";
+        }
+        override public void Write(int indent)
+        {
+            actions.Add(new Get());
+            actions.Add(new GoTo());
+            actions.Add(new Use());
+            DisplayActions(indent);
+        }
+    }
+
+
+    public class Protection_TreatOrRepair2 : StartingActions
+    {
+        public Protection_TreatOrRepair2()
+        {
+            name = "TreatOrRepair2";
+        }
+        override public void Write(int indent)
+        {
+            actions.Add(new GoTo());
+            actions.Add(new Repair());
+            DisplayActions(indent);
+        }
+    }
+
+    public class Protection_CreateDiversion1 : StartingActions
+    {
+        public Protection_CreateDiversion1()
+        {
+            name = "CreateDiversion1";
+        }
+        override public void Write(int indent)
+        {
+            actions.Add(new Get());
+            actions.Add(new GoTo());
+            actions.Add(new Use());
+            DisplayActions(indent);
+        }
+    }
+
+    public class Protection_CreateDiversion2 : StartingActions
+    {
+        public Protection_CreateDiversion2()
+        {
+            name = "CreateDiversion2";
+        }
+        override public void Write(int indent)
+        {
+            actions.Add(new GoTo());
+            actions.Add(new Damage());
+            DisplayActions(indent);
+        }
+    }
+
+    public class Protection_AssembleFortification : StartingActions
+    {
+        public Protection_AssembleFortification()
+        {
+            name = "AssembleFortification";
+        }
+        override public void Write(int indent)
+        {
+            actions.Add(new GoTo());
+            actions.Add(new Repair());
+            DisplayActions(indent);
+        }
+    }
+
+
+    public class Protection_Guard : StartingActions
+    {
+        public Protection_Guard()
+        {
+            name = "Guard";
+        }
+        override public void Write(int indent)
+        {
+            actions.Add(new GoTo());
+            actions.Add(new Defend());
+            DisplayActions(indent);
+        }
+    }
+
+
 
 
 
