@@ -16,6 +16,13 @@ namespace QuestGenerator
             generateStartingAction();
         }
 
+        public Get(string item_to_get)
+        {
+            this.name = "Get";
+            this.ObjectName = item_to_get;
+            generateStartingAction();
+        }
+
         void generateStartingAction()
         {
             int current_action = rnd1.Next(0, 4);
@@ -27,24 +34,24 @@ namespace QuestGenerator
             {
                 if (current_action == 1)
                 {
-                    subActions.Add(new Steal());
+                    subActions.Add(new Steal(ObjectName));
                 }
                 else
                 {
                     if (current_action == 2)
                     {
                         subActions.Add(new GoTo());
-                        subActions.Add(new Gather());
+                        subActions.Add(new Gather(this.ObjectName));
                     }
                     else
                     {
                         subActions.Add(new GoTo());
-                        subActions.Add(new Get());
+                        subActions.Add(new Get(ObjectName));
                         subActions.Add(new GoTo());
                         subQuest sq = new subQuest();
-                        sq.ChangeIndent(2);
+                        sq.ChangeIndent(15);
                         subActions.Add(sq);
-                        subActions.Add(new Exchange());
+                        subActions.Add(new Exchange(ObjectName));
                     }
                 }
             }
@@ -87,13 +94,13 @@ namespace QuestGenerator
         override public void DisplaySingleAction(int indent)
         {
             indent = indent + quest_indent;
-            DrawIndent(indent);
+            DrawIndentWithDashes(indent);
             Console.Write("{0} started, ", this.name);
             writeSubActions(indent);
             quest.Generate();
             quest.ChangeIndent(indent);
             quest.DisplayQuest();
-            DrawIndent(indent);
+            DrawIndentWithDashes(indent);
             Console.WriteLine("{0} end", this.name);
         }
         public void ChangeIndent(int new_value)
@@ -203,6 +210,12 @@ namespace QuestGenerator
             this.ObjectName = generateObject();
             generateStartingAction();
         }
+        public Steal(string obj)
+        {
+            this.name = "Steal";
+            this.ObjectName = obj;
+            generateStartingAction();
+        }
 
         void generateStartingAction()
         {
@@ -211,13 +224,13 @@ namespace QuestGenerator
             {
                 subActions.Add(new GoTo());
                 subActions.Add(new Stealth());
-                subActions.Add(new Take());
+                subActions.Add(new Take(ObjectName));
             }
             else
             {
                 subActions.Add(new GoTo());
                 subActions.Add(new Kill());
-                subActions.Add(new Take());
+                subActions.Add(new Take(ObjectName));
             }
         }
 

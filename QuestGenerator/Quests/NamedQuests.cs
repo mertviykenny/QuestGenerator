@@ -17,7 +17,7 @@ namespace QuestGenerator
 
         override public void generateStrategy()
         {
-            int current_strategy = rnd1.Next(0, 100);//45% Wealth_GatherRawMaterials,45% Wealth_StealValuablesForResale, 10% Wealth_MakeValuablesForResale
+            int current_strategy = rnd1.Next(0, 100);
             if (current_strategy < 45)
                 startingActions.Add(new Wealth_GatherRawMaterials());
             else

@@ -12,10 +12,10 @@ namespace QuestGenerator
         {
             try
             {
-                SimpleQuest.Init(new Random(6224));
+                SimpleQuest.Init(new Random(624));
 
                 WealthQuest q = new WealthQuest();
-                q.changeAmountOfStartingActions(5);
+                q.changeAmountOfStartingActions(3);
                 q.Generate();
                 q.DisplayQuest();
             }

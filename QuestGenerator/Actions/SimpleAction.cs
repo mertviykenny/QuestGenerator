@@ -110,6 +110,11 @@ namespace QuestGenerator
             this.name = "Exchange";
             this.ObjectName = generateObject();
         }
+        public Exchange(string obj)
+        {
+            this.name = "Exchange";
+            this.ObjectName = obj;
+        }
 
         override public void DisplaySingleAction(int indent)
         {
@@ -129,10 +134,27 @@ namespace QuestGenerator
 
     public class Gather : Action
     {
+        string ObjectName;
         public Gather()
         {
             this.name = "Gather";
+            this.ObjectName = generateGatherable();
         }
+
+        public Gather(string name)
+        {
+            this.name = "Gather";
+            int random_value = rnd1.Next(1, 8);
+            this.ObjectName = random_value.ToString()+" "+generateName(name);
+        }
+
+        override public void DisplaySingleAction(int indent)
+        {
+            DrawIndent(indent);
+            Console.WriteLine("{0} {1}", this.name, this.ObjectName);
+            writeSubActions(indent);
+        }
+
     }
 
 
@@ -236,6 +258,11 @@ namespace QuestGenerator
         {
             this.name = "Take";
             this.ObjectName = generateObject();
+        }
+        public Take(string obj)
+        {
+            this.name = "Take";
+            this.ObjectName = obj;
         }
 
         override public void DisplaySingleAction(int indent)
