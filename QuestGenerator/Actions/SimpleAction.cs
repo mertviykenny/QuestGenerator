@@ -119,15 +119,6 @@ namespace QuestGenerator
         }
     }
 
-
-    public class Experiment : Action
-    {
-        public Experiment()
-        {
-            this.name = "Experiment";
-        }
-    }
-
     public class Explore : Action
     {
         public Explore()

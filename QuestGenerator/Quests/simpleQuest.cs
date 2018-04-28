@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace QuestGenerator
 {
-    public enum questType{Knowledge,Comfort,Reputation,Serenity,Protection,Conquest,Wealth,Ability,Equipment};
+    public enum questType{Knowledge,Comfort,Reputation,Serenity,Protection,Conquest,Wealth,Equipment};
 
         abstract public class ISimpleQuest
         {

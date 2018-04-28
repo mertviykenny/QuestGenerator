@@ -159,11 +159,53 @@ namespace QuestGenerator
                     startingActions.Add(new Protection_AssembleFortification());
                 else
                     startingActions.Add(new Protection_Guard());
-
-
             }
         }
     }
+
+    class ConquestQuest : SimpleQuest
+    {
+        public ConquestQuest()
+        {
+            this.type = questType.Conquest;
+        }
+
+        override public void generateStrategy()
+        {
+            int current_strategy = rnd1.Next(0, 100);
+            if (current_strategy < 50)
+                startingActions.Add(new Conquest_Attack());
+            else
+                startingActions.Add(new Conquest_Steal());
+
+        }
+    }
+
+    class EquipmentQuest : SimpleQuest
+    {
+        public EquipmentQuest()
+        {
+            this.type = questType.Equipment;
+        }
+
+        override public void generateStrategy()
+        {
+            int current_strategy = rnd1.Next(0, 100);
+            if (current_strategy < 25)
+                startingActions.Add(new Equipment_Assemble());
+            else
+                if(current_strategy<50)
+                    startingActions.Add(new Equipment_Deliver());
+                else
+                    if(current_strategy<75)
+                        startingActions.Add(new Equipment_Steal());
+                    else
+                        startingActions.Add(new Equipment_Trade());
+
+
+        }
+    }
+
 
 
 

@@ -327,7 +327,7 @@ namespace QuestGenerator
     }
 
 
-    public class Protection_Attack:StartingActions
+    public class Protection_Attack : StartingActions
     {
         public Protection_Attack()
         {
@@ -430,6 +430,95 @@ namespace QuestGenerator
             DisplayActions(indent);
         }
     }
+
+    public class Conquest_Attack:StartingActions
+    {
+        public Conquest_Attack()
+        {
+            name = "Attack";
+        }
+        override public void Write(int indent)
+        {
+            actions.Add(new GoTo());
+            actions.Add(new Damage());
+            DisplayActions(indent);
+        }
+    }
+
+    public class Conquest_Steal: StartingActions
+    {
+        public Conquest_Steal()
+        {
+            name = "Steal";
+        }
+        override public void Write(int indent)
+        {
+            actions.Add(new GoTo());
+            actions.Add(new Steal());
+            actions.Add(new GoTo());
+            actions.Add(new Give());
+            DisplayActions(indent);
+        }
+    }
+
+
+    public class Equipment_Assemble:StartingActions
+    {
+        public Equipment_Assemble()
+        {
+            name = "Assemble";
+        }
+        override public void Write(int indent)
+        {
+            actions.Add(new Repair());
+            DisplayActions(indent);
+        }
+    }
+
+
+    public class Equipment_Deliver : StartingActions
+    {
+        public Equipment_Deliver()
+        {
+            name = "Deliver";
+        }
+        override public void Write(int indent)
+        {
+            actions.Add(new Get());
+            actions.Add(new GoTo());
+            actions.Add(new Give());
+            DisplayActions(indent);
+        }
+    }
+
+
+    public class Equipment_Steal : StartingActions
+    {
+        public Equipment_Steal()
+        {
+            name = "Steal";
+        }
+        override public void Write(int indent)
+        {
+            actions.Add(new Steal());
+            DisplayActions(indent);
+        }
+    }
+
+    public class Equipment_Trade : StartingActions
+    {
+        public Equipment_Trade()
+        {
+            name = "Trade";
+        }
+        override public void Write(int indent)
+        {
+            actions.Add(new GoTo());
+            actions.Add(new Exchange());
+            DisplayActions(indent);
+        }
+    }
+
 
 
 
