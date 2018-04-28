@@ -12,9 +12,9 @@ namespace QuestGenerator
         {
             try
             {
-                SimpleQuest.Init(new Random(6344));
+                SimpleQuest.Init(new Random(6224));
 
-                EquipmentQuest q = new EquipmentQuest();
+                ReputationQuest q = new ReputationQuest();
                 q.changeAmountOfStartingActions(5);
                 q.Generate();
                 q.DisplayQuest();

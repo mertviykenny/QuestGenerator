@@ -7,7 +7,6 @@ using System.Threading.Tasks;
 namespace QuestGenerator
 {
     public enum questType{Knowledge,Comfort,Reputation,Serenity,Protection,Conquest,Wealth,Equipment};
-
         abstract public class ISimpleQuest
         {
             abstract public void generateStrategy();
@@ -17,21 +16,21 @@ namespace QuestGenerator
             protected questType type;
             protected static Random rnd1=null;
             protected int amount_of_starting_actions;
-            protected List<StartingActions> startingActions;
+        protected List<StartingActions> startingActions;
 
 
             public SimpleQuest()
             {
                 if (rnd1 == null)
                     throw new Exception("Quest not initialized. Use SimpleQuest.Init() first.");
-                amount_of_starting_actions = rnd1.Next(1, 5);
+                amount_of_starting_actions = rnd1.Next(1, 3);
                 startingActions = new List<StartingActions>();
             }
 
             public static void Init(Random r)
             {
                 rnd1 = r;
-                Action.Init(rnd1);
+                Action.Init(rnd1); 
             }
 
             public void Generate()
@@ -62,6 +61,7 @@ namespace QuestGenerator
                 this.amount_of_starting_actions = new_value;
                 startingActions = new List<StartingActions>();
             }
+
             public void DisplayQuest()
             {
                 Console.WriteLine("Quest:\nType:{0}",type);

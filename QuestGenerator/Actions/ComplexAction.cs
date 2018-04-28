@@ -63,14 +63,31 @@ namespace QuestGenerator
         public subQuest()
         {
             this.name = "subQuest";
-            // quest = new questGenerator.SimpleQuest(rnd1.Next());
+            int action = rnd1.Next(0, Enum.GetNames(typeof(questType)).Length);
+            if (action == 0)
+                quest = new KnowledgeQuest();
+            if (action == 1)
+                quest = new ComfortQuest();
+            if (action == 2)
+                quest = new ReputationQuest();
+            if (action == 3)
+                quest = new SerenityQuest();
+            if (action == 4)
+                quest = new ProtectionQuest();
+            if (action == 5)
+                quest = new ConquestQuest();
+            if (action == 6)
+                quest = new WealthQuests();
+            if (action == 7)
+                quest = new EquipmentQuest();
         }
         override public void DisplaySingleAction(int indent)
         {
             DrawIndent(indent);
             Console.WriteLine("{0} start", this.name);
             writeSubActions(indent);
-            //  quest.Write();
+            quest.Generate();
+            quest.DisplayQuest();
             DrawIndent(indent);
             Console.WriteLine("{0} end", this.name);
         }
@@ -96,7 +113,7 @@ namespace QuestGenerator
                 if (next_action == 1)
                 {
                     this.subActions.Add(new GoTo());
-                    this.subActions.Add(new subQuest());
+                    subActions.Add(new subQuest());
                     this.subActions.Add(new Listen());
                 }
                 else
@@ -110,7 +127,7 @@ namespace QuestGenerator
                     else
                     {
                         this.subActions.Add(new Get());
-                        this.subActions.Add(new subQuest());
+                        subActions.Add(new subQuest());
                         this.subActions.Add(new Give());
                         this.subActions.Add(new Listen());
                     }
