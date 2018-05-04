@@ -8,18 +8,18 @@ namespace QuestGenerator
 {
     public class Get : Action
     {
-        string ObjectName;
+        Object obj;
         public Get()
         {
             this.name = "Get";
-            this.ObjectName = generateObject();
+            this.obj = new Item();
             generateStartingAction();
         }
 
-        public Get(string item_to_get)
+        public Get(Object item_to_get)
         {
             this.name = "Get";
-            this.ObjectName = item_to_get;
+            this.obj = item_to_get;
             generateStartingAction();
         }
 
@@ -34,24 +34,23 @@ namespace QuestGenerator
             {
                 if (current_action == 1)
                 {
-                    subActions.Add(new Steal(ObjectName));
+                    subActions.Add(new Steal(obj));
                 }
                 else
                 {
                     if (current_action == 2)
                     {
                         subActions.Add(new GoTo());
-                        subActions.Add(new Gather(this.ObjectName));
+                        subActions.Add(new Gather(obj));
                     }
                     else
                     {
                         subActions.Add(new GoTo());
-                        subActions.Add(new Get(ObjectName));
+                        subActions.Add(new Get(obj));
                         subActions.Add(new GoTo());
                         subQuest sq = new subQuest();
-                        sq.ChangeIndent(15);
                         subActions.Add(sq);
-                        subActions.Add(new Exchange(ObjectName));
+                        subActions.Add(new Exchange(obj));
                     }
                 }
             }
@@ -60,7 +59,7 @@ namespace QuestGenerator
         override public void DisplaySingleAction(int indent)
         {
             DrawIndent(indent);
-            Console.WriteLine("{0} {1}", this.name, this.ObjectName);
+            Console.WriteLine("{0} {1}", this.name, obj.getName());
             writeSubActions(indent);
         }
     };
@@ -103,10 +102,6 @@ namespace QuestGenerator
             DrawIndentWithDashes(indent);
             Console.WriteLine("{0} end", this.name);
         }
-        public void ChangeIndent(int new_value)
-        {
-            this.quest_indent = new_value;
-        }
     }
 
     public class Learn : Action
@@ -130,7 +125,6 @@ namespace QuestGenerator
                 {
                     this.subActions.Add(new GoTo());
                     subQuest sq = new subQuest();
-                    sq.ChangeIndent(2);
                     subActions.Add(sq);
                     this.subActions.Add(new Listen());
                 }
@@ -146,7 +140,6 @@ namespace QuestGenerator
                     {
                         this.subActions.Add(new Get());
                         subQuest sq = new subQuest();
-                        sq.ChangeIndent(2);
                         subActions.Add(sq);
                         this.subActions.Add(new Give());
                         this.subActions.Add(new Listen());
@@ -203,17 +196,17 @@ namespace QuestGenerator
 
     public class Steal : Action
     {
-        string ObjectName;
+        Object obj;
         public Steal()
         {
             this.name = "Steal";
-            this.ObjectName = generateObject();
+            this.obj = new Item();
             generateStartingAction();
         }
-        public Steal(string obj)
+        public Steal(Object obj)
         {
             this.name = "Steal";
-            this.ObjectName = obj;
+            this.obj = obj;
             generateStartingAction();
         }
 
@@ -224,20 +217,20 @@ namespace QuestGenerator
             {
                 subActions.Add(new GoTo());
                 subActions.Add(new Stealth());
-                subActions.Add(new Take(ObjectName));
+                subActions.Add(new Take(obj));
             }
             else
             {
                 subActions.Add(new GoTo());
                 subActions.Add(new Kill());
-                subActions.Add(new Take(ObjectName));
+                subActions.Add(new Take(obj));
             }
         }
 
         override public void DisplaySingleAction(int indent)
         {
             DrawIndent(indent);
-            Console.WriteLine("{0} {1}", this.name, this.ObjectName);
+            Console.WriteLine("{0} {1}", this.name, obj.getName());
             writeSubActions(indent);
         }
     };

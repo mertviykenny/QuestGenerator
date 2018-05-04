@@ -25,17 +25,17 @@ namespace QuestGenerator
 
     public class Kill : Action
     {
-        string NPCName;
+        NPC npc;
         public Kill()
         {
             this.name = "Kill";
-            this.NPCName = generateNPC();
+            this.npc = new NPC();
         }
 
         override public void DisplaySingleAction(int indent)
         {
             DrawIndent(indent);
-            Console.WriteLine("{0} {1}", this.name,this.NPCName);
+            Console.WriteLine("{0} {1}", this.name,this.npc.getName());
             writeSubActions(indent);
         }
     }; 
@@ -44,17 +44,17 @@ namespace QuestGenerator
 
     public class Capture : Action
     {
-        string NPCName;
+        NPC npc;
         public Capture()
         {
             this.name = "Capture";
-            this.NPCName = generateNPC();
+            this.npc = new NPC();
         }
 
         override public void DisplaySingleAction(int indent)
         {
             DrawIndent(indent);
-            Console.WriteLine("{0} {1}", this.name, this.NPCName);
+            Console.WriteLine("{0} {1}", this.name, this.npc.getName());
             writeSubActions(indent);
         }
     }
@@ -70,33 +70,33 @@ namespace QuestGenerator
 
     public class Defend : Action
     {
-        string NPCName;
+        NPC npc;
         public Defend()
         {
             this.name = "Defend";
-            this.NPCName = generateNPC();
+            this.npc = new NPC();
         }
         override public void DisplaySingleAction(int indent)
         {
             DrawIndent(indent);
-            Console.WriteLine("{0} {1}", this.name, this.NPCName);
+            Console.WriteLine("{0} {1}", this.name, this.npc.getName());
             writeSubActions(indent);
         }
     }
 
     public class Escort : Action
     {
-        string NPCName;
+        NPC npc;
         public Escort()
         {
             this.name = "Escort";
-            this.NPCName = generateNPC();
+            this.npc = new NPC();
         }
 
         override public void DisplaySingleAction(int indent)
         {
             DrawIndent(indent);
-            Console.WriteLine("{0} {1}", this.name, this.NPCName);
+            Console.WriteLine("{0} {1}", this.name, this.npc.getName());
             writeSubActions(indent);
         }
     }
@@ -104,22 +104,22 @@ namespace QuestGenerator
 
     public class Exchange : Action
     {
-        string ObjectName;
+        Object item;
         public Exchange()
         {
             this.name = "Exchange";
-            this.ObjectName = generateObject();
+            this.item= new Item();
         }
-        public Exchange(string obj)
+        public Exchange(Object obj)
         {
             this.name = "Exchange";
-            this.ObjectName = obj;
+            this.item = obj;
         }
 
         override public void DisplaySingleAction(int indent)
         {
             DrawIndent(indent);
-            Console.WriteLine("{0} {1}", this.name, this.ObjectName);
+            Console.WriteLine("{0} {1}", this.name, this.item.getName());
             writeSubActions(indent);
         }
     }
@@ -134,24 +134,23 @@ namespace QuestGenerator
 
     public class Gather : Action
     {
-        string ObjectName;
+        Object obj;
         public Gather()
         {
-            this.name = "Gather";
-            this.ObjectName = generateGatherable();
+            this.name = "Gather/PickUp";
+            this.obj = new Item();
         }
 
-        public Gather(string name)
+        public Gather(Object gather)
         {
-            this.name = "Gather";
-            int random_value = rnd1.Next(1, 8);
-            this.ObjectName = random_value.ToString()+" "+generateName(name);
+            this.name = "Gather/PickUp";
+            this.obj = gather;
         }
 
         override public void DisplaySingleAction(int indent)
         {
             DrawIndent(indent);
-            Console.WriteLine("{0} {1}", this.name, this.ObjectName);
+            Console.WriteLine("{0} {1}", this.name, this.obj.getName());
             writeSubActions(indent);
         }
 
@@ -160,33 +159,33 @@ namespace QuestGenerator
 
     public class Give : Action
     {
-        string ObjectName;
+        Object obj;
         public Give()
         {
             this.name = "Give";
-            this.ObjectName = generateObject();
+            this.obj = new Item();
         }
         override public void DisplaySingleAction(int indent)
         {
             DrawIndent(indent);
-            Console.WriteLine("{0} {1}", this.name, this.ObjectName);
+            Console.WriteLine("{0} {1}", this.name, this.obj.getName());
             writeSubActions(indent);
         }
     }
 
     public class Listen : Action
     {
-        string NPCName;
+        Object npc;
         public Listen()
         {
             this.name = "Listen";
-            this.NPCName = generateNPC();
+            this.npc =new NPC();
         }
 
         override public void DisplaySingleAction(int indent)
         {
             DrawIndent(indent);
-            Console.WriteLine("{0} to {1}", this.name, this.NPCName);
+            Console.WriteLine("{0} to {1}", this.name, this.npc.getName());
             writeSubActions(indent);
         }
     }
@@ -210,17 +209,21 @@ namespace QuestGenerator
 
     public class Report : Action
     {
-        string NPCName;
+        Object npc;
         public Report()
         {
             this.name = "Report";
-            this.NPCName = generateNPC();
+            this.npc = new NPC();
+        }
+        public Report(Object obj)
+        {
+            this.npc = obj;
         }
 
         override public void DisplaySingleAction(int indent)
         {
             DrawIndent(indent);
-            Console.WriteLine("{0} to {1}", this.name, this.NPCName);
+            Console.WriteLine("{0} to {1}", this.name, this.npc.getName());
             writeSubActions(indent);
         }
     };
@@ -228,16 +231,16 @@ namespace QuestGenerator
     public class Spy : Action
     {
 
-        string NPCName;
+        Object npc;
         public Spy()
         {
             this.name = "Spy";
-            this.NPCName = generateNPC();
+            this.npc = new NPC();
         }
         override public void DisplaySingleAction(int indent)
         {
             DrawIndent(indent);
-            Console.WriteLine("{0} on {1}", this.name, this.NPCName);
+            Console.WriteLine("{0} on {1}", this.name, this.npc.getName());
             writeSubActions(indent);
         }
     };
@@ -253,22 +256,22 @@ namespace QuestGenerator
 
     public class Take : Action
     {
-        string ObjectName;
+        Object item;
         public Take()
         {
             this.name = "Take";
-            this.ObjectName = generateObject();
+            this.item = new Item();
         }
-        public Take(string obj)
+        public Take(Object obj)
         {
             this.name = "Take";
-            this.ObjectName = obj;
+            this.item = obj;
         }
 
         override public void DisplaySingleAction(int indent)
         {
             DrawIndent(indent);
-            Console.WriteLine("{0} {1}", this.name, this.ObjectName);
+            Console.WriteLine("{0} {1}", this.name, this.item.getName());
             writeSubActions(indent);
         }
     };

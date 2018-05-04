@@ -31,7 +31,8 @@ namespace QuestGenerator
             public static void Init(Random r)
             {
                 rnd1 = r;
-                Action.Init(rnd1); 
+                Action.Init(rnd1);
+                IObject.Init(new Random(rnd1.Next()));
             }
         public void ChangeIndent(int new_value)
         {
