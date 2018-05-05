@@ -152,12 +152,12 @@ namespace QuestGenerator
     {
         public Explore()
         {
-            this.name = "Explore/Check/Find";
+            this.name = "Explore/Check/Find about";
         }
 
         public Explore(Object o)
         {
-            this.name = "Explore/Check/Find";
+            this.name = "Explore/Check/Find about";
             this.obj = o;
         }
 
@@ -263,6 +263,11 @@ namespace QuestGenerator
         public Repair()
         {
             this.name = "Repair or create";
+            this.obj = new NPC();
+        }
+        public Repair(Object o)
+        {
+            this.obj = o;
         }
     };
 

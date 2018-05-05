@@ -30,8 +30,9 @@ namespace QuestGenerator
         }
         override public void Write(int indent)
         {
-            actions.Add(new GoTo());
-            actions.Add(new Get());
+            Item i = new Item();
+            actions.Add(new GoTo(i));
+            actions.Add(new Get(i));
             DisplayActions(indent);
         }
     }
@@ -75,9 +76,11 @@ namespace QuestGenerator
         }
         override public void Write(int indent)
         {
-            actions.Add(new Get());
-            actions.Add(new GoTo());
-            actions.Add(new Give());
+            Item i = new Item();
+            NPC npc = new NPC();
+            actions.Add(new Get(i));
+            actions.Add(new GoTo(npc));
+            actions.Add(new Give(i));
             DisplayActions(indent);
         }
     }
@@ -107,10 +110,12 @@ namespace QuestGenerator
         }
         override public void Write(int indent)
         {
-            actions.Add(new GoTo());
-            actions.Add(new Listen());
-            actions.Add(new GoTo());
-            actions.Add(new Report());
+            NPC npc1 = new NPC(); 
+            NPC npc2 = new NPC();
+            actions.Add(new GoTo(npc1));
+            actions.Add(new Listen(npc1));
+            actions.Add(new GoTo(npc2));
+            actions.Add(new Report(npc2));
             DisplayActions(indent);
 
         }
@@ -123,11 +128,14 @@ namespace QuestGenerator
         }
         override public void Write(int indent)
         {
-            actions.Add(new Get());
-            actions.Add(new GoTo());
-            actions.Add(new Use());
-            actions.Add(new GoTo());
-            actions.Add(new Give());
+            Item i = new Item();
+            NPC npc = new NPC();
+            NPC npc2 = new NPC();
+            actions.Add(new Get(i));
+            actions.Add(new GoTo(npc));
+            actions.Add(new Use(i));
+            actions.Add(new GoTo(npc2));
+            actions.Add(new Give(i));
             DisplayActions(indent);
 
         }
@@ -142,9 +150,11 @@ namespace QuestGenerator
         }
         override public void Write(int indent)
         {
-            actions.Add(new Get());
-            actions.Add(new GoTo());
-            actions.Add(new Give());
+            Item i = new Item();
+            NPC npc = new NPC();
+            actions.Add(new Get(i));
+            actions.Add(new GoTo(npc));
+            actions.Add(new Give(i));
             DisplayActions(indent);
         }
     };
@@ -158,10 +168,13 @@ namespace QuestGenerator
         }
         override public void Write(int indent)
         {
-            actions.Add(new GoTo());
-            actions.Add(new Damage());
-            actions.Add(new GoTo());
-            actions.Add(new Report());
+            NPC npc1 = new NPC();
+            NPC npc2 = new NPC();
+            
+            actions.Add(new GoTo(npc1));
+            actions.Add(new Damage(npc1));
+            actions.Add(new GoTo(npc2));
+            actions.Add(new Report(npc2));
             DisplayActions(indent);
         }
     };
@@ -175,9 +188,11 @@ namespace QuestGenerator
         }
         override public void Write(int indent)
         {
-            actions.Add(new Get());
-            actions.Add(new GoTo());
-            actions.Add(new Give());
+            Item i = new Item();
+            NPC npc = new NPC();
+            actions.Add(new Get(i));
+            actions.Add(new GoTo(npc));
+            actions.Add(new Give(npc));
             DisplayActions(indent);
         }
     };
@@ -192,10 +207,12 @@ namespace QuestGenerator
         }
         override public void Write(int indent)
         {
-            actions.Add(new GoTo());
-            actions.Add(new Kill());
-            actions.Add(new GoTo());
-            actions.Add(new Report());
+            NPC enemy = new NPC();
+            NPC friend = new NPC();
+            actions.Add(new GoTo(enemy));
+            actions.Add(new Kill(enemy));
+            actions.Add(new GoTo(friend));
+            actions.Add(new Report(friend));
             DisplayActions(indent);
         }
     };
@@ -208,9 +225,15 @@ namespace QuestGenerator
         }
         override public void Write(int indent)
         {
-            actions.Add(new GoTo());
-            actions.Add(new GoTo());
-            actions.Add(new Report());
+            Item i1 = new Item();
+            Item i2 = new Item();
+            i1.setName( "Place 1");
+            i2.setName( "Place 2");
+            NPC npc = new NPC();
+
+            actions.Add(new GoTo(i1));
+            actions.Add(new GoTo(i2));
+            actions.Add(new Report(npc));
             DisplayActions(indent);
         }
     };
@@ -223,8 +246,9 @@ namespace QuestGenerator
         }
         override public void Write(int indent)
         {
-            actions.Add(new GoTo());
-            actions.Add(new Damage());
+            NPC npc = new NPC();
+            actions.Add(new GoTo(npc));
+            actions.Add(new Damage(npc));
             DisplayActions(indent);
         }
     }
@@ -237,11 +261,14 @@ namespace QuestGenerator
         }
         override public void Write(int indent)
         {
-            actions.Add(new Get());
-            actions.Add(new GoTo());
-            actions.Add(new Use());
-            actions.Add(new GoTo());
-            actions.Add(new Give());
+            Item i = new Item();
+            NPC enemy = new NPC();
+            NPC friendly = new NPC();
+            actions.Add(new Get(i));
+            actions.Add(new GoTo(enemy));
+            actions.Add(new Use(i));
+            actions.Add(new GoTo(friendly));
+            actions.Add(new Give(enemy));
             DisplayActions(indent);
         }
     }
@@ -254,12 +281,16 @@ namespace QuestGenerator
         }
         override public void Write(int indent)
         {
-            actions.Add(new Get());
-            actions.Add(new GoTo());
-            actions.Add(new Use());
-            actions.Add(new Capture());
-            actions.Add(new GoTo());
-            actions.Add(new Give());
+            Item i = new Item();
+            NPC enemy = new NPC();
+            NPC friendly = new NPC();
+
+            actions.Add(new Get(i));
+            actions.Add(new GoTo(enemy));
+            actions.Add(new Use(i));
+            actions.Add(new Capture(enemy));
+            actions.Add(new GoTo(friendly));
+            actions.Add(new Give(enemy));
             DisplayActions(indent);
         }
     }
@@ -273,10 +304,12 @@ namespace QuestGenerator
         }
         override public void Write(int indent)
         {
-            actions.Add(new GoTo());
-            actions.Add(new Listen());
-            actions.Add(new GoTo());
-            actions.Add(new Report());
+            NPC npc1 = new NPC();
+            NPC npc2 = new NPC();
+            actions.Add(new GoTo(npc1));
+            actions.Add(new Listen(npc1));
+            actions.Add(new GoTo(npc2));
+            actions.Add(new Report(npc2));
             DisplayActions(indent);
         }
     }
@@ -290,10 +323,13 @@ namespace QuestGenerator
         }
         override public void Write(int indent)
         {
-            actions.Add(new GoTo());
-            actions.Add(new Take());
-            actions.Add(new GoTo());
-            actions.Add(new Give());
+            NPC npc1 = new NPC();
+            NPC npc2 = new NPC();
+            Item i = new Item();
+            actions.Add(new GoTo(npc1));
+            actions.Add(new Take(i));
+            actions.Add(new GoTo(npc2));
+            actions.Add(new Give(i));
             DisplayActions(indent);
         }
     }
@@ -306,9 +342,11 @@ namespace QuestGenerator
         }
         override public void Write(int indent)
         {
-            actions.Add(new Get());
-            actions.Add(new GoTo());
-            actions.Add(new Give());
+            Item i = new Item();
+            NPC npc = new NPC();
+            actions.Add(new Get(i));
+            actions.Add(new GoTo(npc));
+            actions.Add(new Give(npc));
             DisplayActions(indent);
         }
     }
@@ -321,11 +359,14 @@ namespace QuestGenerator
         }
         override public void Write(int indent)
         {
-            actions.Add(new GoTo());
-            actions.Add(new Damage());
-            actions.Add(new Escort());
-            actions.Add(new GoTo());
-            actions.Add(new Report());
+            NPC friendly = new NPC();
+            NPC friendly2 = new NPC();
+            NPC enemy = new NPC();
+            actions.Add(new GoTo(friendly));
+            actions.Add(new Damage(enemy));
+            actions.Add(new Escort(friendly));
+            actions.Add(new GoTo(friendly2));
+            actions.Add(new Report(friendly2));
             DisplayActions(indent);
         }
     }
@@ -339,10 +380,12 @@ namespace QuestGenerator
         }
         override public void Write(int indent)
         {
-            actions.Add(new GoTo());
-            actions.Add(new Damage());
-            actions.Add(new GoTo());
-            actions.Add(new Report());
+            NPC friendly = new NPC();
+            NPC enemy = new NPC();
+            actions.Add(new GoTo(enemy));
+            actions.Add(new Damage(enemy));
+            actions.Add(new GoTo(friendly));
+            actions.Add(new Report(friendly));
             DisplayActions(indent);
         }
     }
@@ -355,9 +398,11 @@ namespace QuestGenerator
         }
         override public void Write(int indent)
         {
-            actions.Add(new Get());
-            actions.Add(new GoTo());
-            actions.Add(new Use());
+            NPC npc1 = new NPC();
+            Item i = new Item();
+            actions.Add(new Get(i));
+            actions.Add(new GoTo(npc1));
+            actions.Add(new Use(i));
             DisplayActions(indent);
         }
     }
@@ -371,8 +416,9 @@ namespace QuestGenerator
         }
         override public void Write(int indent)
         {
-            actions.Add(new GoTo());
-            actions.Add(new Repair());
+            NPC npc = new NPC();
+            actions.Add(new GoTo(npc));
+            actions.Add(new Repair(npc));
             DisplayActions(indent);
         }
     }
@@ -385,9 +431,11 @@ namespace QuestGenerator
         }
         override public void Write(int indent)
         {
-            actions.Add(new Get());
-            actions.Add(new GoTo());
-            actions.Add(new Use());
+            Item i = new Item();
+            NPC npc = new NPC();
+            actions.Add(new Get(i));
+            actions.Add(new GoTo(npc));
+            actions.Add(new Use(i));
             DisplayActions(indent);
         }
     }
@@ -400,8 +448,9 @@ namespace QuestGenerator
         }
         override public void Write(int indent)
         {
-            actions.Add(new GoTo());
-            actions.Add(new Damage());
+            NPC npc = new NPC();
+            actions.Add(new GoTo(npc));
+            actions.Add(new Damage(npc));
             DisplayActions(indent);
         }
     }
@@ -414,8 +463,9 @@ namespace QuestGenerator
         }
         override public void Write(int indent)
         {
-            actions.Add(new GoTo());
-            actions.Add(new Repair());
+            NPC npc = new NPC();
+            actions.Add(new GoTo(npc));
+            actions.Add(new Repair(npc));
             DisplayActions(indent);
         }
     }
@@ -429,8 +479,9 @@ namespace QuestGenerator
         }
         override public void Write(int indent)
         {
-            actions.Add(new GoTo());
-            actions.Add(new Defend());
+            NPC npc = new NPC();
+            actions.Add(new GoTo(npc));
+            actions.Add(new Defend(npc));
             DisplayActions(indent);
         }
     }
@@ -443,8 +494,9 @@ namespace QuestGenerator
         }
         override public void Write(int indent)
         {
-            actions.Add(new GoTo());
-            actions.Add(new Damage());
+            NPC npc = new NPC();
+            actions.Add(new GoTo(npc));
+            actions.Add(new Damage(npc));
             DisplayActions(indent);
         }
     }
@@ -457,10 +509,14 @@ namespace QuestGenerator
         }
         override public void Write(int indent)
         {
-            actions.Add(new GoTo());
-            actions.Add(new Steal());
-            actions.Add(new GoTo());
-            actions.Add(new Give());
+            NPC enemy = new NPC();
+            Item i=new Item();
+            i.setCoords(enemy);
+            NPC npc=new NPC();
+            actions.Add(new GoTo(enemy));
+            actions.Add(new Steal(i));
+            actions.Add(new GoTo(npc));
+            actions.Add(new Give(i));
             DisplayActions(indent);
         }
     }
@@ -474,7 +530,8 @@ namespace QuestGenerator
         }
         override public void Write(int indent)
         {
-            actions.Add(new Repair());
+            NPC npc = new NPC();
+            actions.Add(new Repair(npc));
             DisplayActions(indent);
         }
     }
@@ -488,9 +545,11 @@ namespace QuestGenerator
         }
         override public void Write(int indent)
         {
-            actions.Add(new Get());
-            actions.Add(new GoTo());
-            actions.Add(new Give());
+            NPC npc = new NPC();
+            Item i = new Item();
+            actions.Add(new Get(i));
+            actions.Add(new GoTo(npc));
+            actions.Add(new Give(i));
             DisplayActions(indent);
         }
     }
@@ -504,7 +563,8 @@ namespace QuestGenerator
         }
         override public void Write(int indent)
         {
-            actions.Add(new Steal());
+            Item i = new Item();
+            actions.Add(new Steal(i));
             DisplayActions(indent);
         }
     }
@@ -517,8 +577,10 @@ namespace QuestGenerator
         }
         override public void Write(int indent)
         {
-            actions.Add(new GoTo());
-            actions.Add(new Exchange());
+            Item i = new Item();
+            NPC npc = new NPC();
+            actions.Add(new GoTo(npc));
+            actions.Add(new Exchange(i,npc));
             DisplayActions(indent);
         }
     }

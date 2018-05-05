@@ -18,6 +18,8 @@ namespace QuestGenerator
         public abstract string getName();
         
     }
+
+    //todo GATES/CHESTS/ETC
     public abstract class Object:IObject
     {
         protected string name;
@@ -34,6 +36,11 @@ namespace QuestGenerator
             this.name = name;
             generatePosition();
         }
+        public void setName(string new_name)
+        {
+            this.name = new_name;
+        }
+
 
         void generatePosition()
         {
