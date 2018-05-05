@@ -44,8 +44,12 @@ namespace QuestGenerator
         }
         override public void Write(int indent)
         {
-            actions.Add(new GoTo());
-            actions.Add(new Steal());
+            Item i = new Item();
+            NPC npc = new NPC();
+            actions.Add(new GoTo(i));
+            actions.Add(new Steal(i));
+            actions.Add(new GoTo(npc));
+            actions.Add(new Exchange(i,npc));
             DisplayActions(indent);
         }
     }

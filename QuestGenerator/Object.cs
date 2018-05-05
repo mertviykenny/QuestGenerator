@@ -44,6 +44,16 @@ namespace QuestGenerator
         {
             return this.name;
         }
+        public void setCoords(int new_x, int new_y)
+        {
+            this.x = new_x;
+            this.y = new_y;
+        }
+        public void setCoords(Object o)
+        {
+            this.x = o.x;
+            this.y = o.y;
+        }
         protected string generateName(List<string> prefixes, List<string> names, List<string> suffixes)
         {
             int action = rnd1.Next(0, 10);
@@ -121,7 +131,7 @@ namespace QuestGenerator
         protected void generateItem()
         {
             List<string> prefixes = new List<string> { "Magic", "Lost in time", "Stolen", "Sparkling", "Glooming", "Important", "Poisonous", "Powerfull", "Lost", "Mighty" };
-            List<string> names = new List<string> { "Stone", "Book", "Tome", "Diamond", "Note", "Sword", "Dagger", "Message", "Trap", "Spear" };
+            List<string> names = new List<string> { "Inscripted Stone", "Book", "Tome", "Diamond", "Note", "Sword", "Dagger", "Message", "Trap", "Spear" };
             List<string> suffixes = new List<string> { "of the Snake", "of the Wolf", "of the Dead", "of arcane magic", "from the Master", "from the One", "of the Invoker", "of the Bandit", "from the Friend", "from the Enemy" };
             this.name = generateName(prefixes, names, suffixes);
         }

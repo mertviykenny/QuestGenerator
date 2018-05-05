@@ -39,17 +39,18 @@ namespace QuestGenerator
                 {
                     if (current_action == 2)
                     {
-                        subActions.Add(new GoTo());
+                        subActions.Add(new GoTo(obj));
                         subActions.Add(new Gather(obj));
                     }
                     else
                     {
-                        subActions.Add(new GoTo());
+                        subActions.Add(new GoTo(obj));
                         subActions.Add(new Get(obj));
-                        subActions.Add(new GoTo());
+                        NPC npc = new NPC();
+                        subActions.Add(new GoTo(npc));
                         subQuest sq = new subQuest();
                         subActions.Add(sq);
-                        subActions.Add(new Exchange(obj));
+                        subActions.Add(new Exchange(obj,npc));
                     }
                 }
             }
@@ -107,13 +108,13 @@ namespace QuestGenerator
     {
         public Learn()
         {
-            this.name = "Learn information";
+            this.name = "Learn information about";
             generateStartingAction();
         }
 
         public Learn(Object o)
         {
-            this.name = "Learn information";
+            this.name = "Learn information about";
             this.obj = o;
             generateStartingAction();
         }
@@ -129,26 +130,34 @@ namespace QuestGenerator
             {
                 if (next_action == 1)
                 {
-                    this.subActions.Add(new GoTo());
+                    NPC npc = new NPC();
+                    this.subActions.Add(new GoTo(npc));
+                    this.subActions.Add(new Listen(npc));
                     subQuest sq = new subQuest();
                     subActions.Add(sq);
-                    this.subActions.Add(new Listen());
+                    this.subActions.Add(new Listen(npc));
                 }
                 else
                 {
                     if (next_action == 2)
                     {
-                        this.subActions.Add(new GoTo());
-                        this.subActions.Add(new Get());
-                        this.subActions.Add(new Read());
+                        Item i = new Item();
+                        this.subActions.Add(new GoTo(i));
+                        this.subActions.Add(new Get(i));
+                        this.subActions.Add(new Read(i));
                     }
                     else
                     {
-                        this.subActions.Add(new Get());
+                        if (obj == null)
+                        {
+                            Item obj = new Item();
+                        }
+                        NPC npc = new NPC();
+                        this.subActions.Add(new Get(obj));
                         subQuest sq = new subQuest();
                         subActions.Add(sq);
-                        this.subActions.Add(new Give());
-                        this.subActions.Add(new Listen());
+                        this.subActions.Add(new Give(obj));
+                        this.subActions.Add(new Listen(npc));
                     }
                 }
             }
@@ -185,9 +194,9 @@ namespace QuestGenerator
             else
             {
                 if (next_action == 1)
-                    this.subActions.Add(new Learn());
+                    this.subActions.Add(new Learn(obj));
                 else
-                    this.subActions.Add(new Explore());
+                    this.subActions.Add(new Explore(obj));
             }
         }
 
@@ -229,14 +238,16 @@ namespace QuestGenerator
             int current_action = rnd1.Next();
             if (current_action == 0)
             {
-                subActions.Add(new GoTo());
+                subActions.Add(new GoTo(obj));
                 subActions.Add(new Stealth());
                 subActions.Add(new Take(obj));
             }
             else
             {
-                subActions.Add(new GoTo());
-                subActions.Add(new Kill());
+                NPC npc = new NPC();
+                npc.setCoords(obj);
+                subActions.Add(new GoTo(npc));
+                subActions.Add(new Kill(npc));
                 subActions.Add(new Take(obj));
             }
         }

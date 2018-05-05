@@ -23,7 +23,7 @@ namespace QuestGenerator
             if(obj==null)
                 Console.WriteLine("{0}",this.name);
             else
-                Console.WriteLine("{0}++{1}", this.name,this.obj.getName());
+                Console.WriteLine("{0} {1}", this.name,this.obj.getName());
             writeSubActions(indent);
         }
         public static void Init(Random rnd_ref)
@@ -53,6 +53,9 @@ namespace QuestGenerator
                     a.DisplaySingleAction(indent);
                 });
         }
-
+        protected Object getObject()
+        {
+            return this.obj;
+        }
     };
 }

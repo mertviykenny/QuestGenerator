@@ -126,21 +126,24 @@ namespace QuestGenerator
 
     public class Exchange : Action
     {
+        Object item;
+        Object npc;
         public Exchange()
         {
             this.name = "Exchange";
             this.obj= new Item();
         }
-        public Exchange(Object o)
+        public Exchange(Object new_item,Object new_NPC)
         {
             this.name = "Exchange";
-            this.obj = o;
+            this.item = new_item;
+            this.npc = new_NPC;
         }
 
         override public void DisplaySingleAction(int indent)
         {
             DrawIndent(indent);
-            Console.WriteLine("{0} {1}", this.name, this.obj.getName());
+            Console.WriteLine("{0} {1} with {2}", this.name, this.item.getName(),this.npc.getName());
             writeSubActions(indent);
         }
     }
@@ -149,13 +152,25 @@ namespace QuestGenerator
     {
         public Explore()
         {
-            this.name = "Explore/Check";
+            this.name = "Explore/Check/Find";
         }
 
         public Explore(Object o)
         {
-            this.name = "Explore/Check";
+            this.name = "Explore/Check/Find";
             this.obj = o;
+        }
+
+        override public void DisplaySingleAction(int indent)
+        {
+            DrawIndent(indent);
+            if(this.obj!=null)
+                Console.WriteLine("{0} {1}", this.name, this.obj.getName());
+            else
+                Console.WriteLine("{0}", this.name);
+
+
+            writeSubActions(indent);
         }
     }
 
