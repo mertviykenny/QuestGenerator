@@ -104,6 +104,11 @@ namespace QuestGenerator
         }
     }
 
+    public class Wall : Object
+    {
+
+    }
+
     public class Item : Object
     {
 

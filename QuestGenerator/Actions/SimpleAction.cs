@@ -25,17 +25,21 @@ namespace QuestGenerator
 
     public class Kill : Action
     {
-        NPC npc;
         public Kill()
         {
             this.name = "Kill";
-            this.npc = new NPC();
+            this.obj = new NPC();
+        }
+        public Kill(Object o)
+        {
+            this.name = "Kill";
+            this.obj = o;
         }
 
         override public void DisplaySingleAction(int indent)
         {
             DrawIndent(indent);
-            Console.WriteLine("{0} {1}", this.name,this.npc.getName());
+            Console.WriteLine("{0} {1}", this.name,this.obj.getName());
             writeSubActions(indent);
         }
     }; 
@@ -44,17 +48,20 @@ namespace QuestGenerator
 
     public class Capture : Action
     {
-        NPC npc;
         public Capture()
         {
             this.name = "Capture";
-            this.npc = new NPC();
+            this.obj = new NPC();
         }
-
+        public Capture(Object o)
+        {
+            this.name = "Capture";
+            this.obj = o;
+        }
         override public void DisplaySingleAction(int indent)
         {
             DrawIndent(indent);
-            Console.WriteLine("{0} {1}", this.name, this.npc.getName());
+            Console.WriteLine("{0} {1}", this.name, this.obj.getName());
             writeSubActions(indent);
         }
     }
@@ -66,37 +73,52 @@ namespace QuestGenerator
         {
             this.name = "Damage";
         }
+
+        public Damage(Object o)
+        {
+            this.name = "Damage";
+            this.obj = o;
+        }
     }
 
     public class Defend : Action
     {
-        NPC npc;
         public Defend()
         {
             this.name = "Defend";
-            this.npc = new NPC();
+            this.obj = new NPC();
+        }
+        public Defend(Object o)
+        {
+            this.name = "Defend";
+            this.obj = o;
         }
         override public void DisplaySingleAction(int indent)
         {
             DrawIndent(indent);
-            Console.WriteLine("{0} {1}", this.name, this.npc.getName());
+            Console.WriteLine("{0} {1}", this.name, this.obj.getName());
             writeSubActions(indent);
         }
     }
 
     public class Escort : Action
     {
-        NPC npc;
         public Escort()
         {
             this.name = "Escort";
-            this.npc = new NPC();
+            this.obj = new NPC();
+        }
+
+        public Escort(Object o)
+        {
+            this.name = "Escort";
+            this.obj = o;
         }
 
         override public void DisplaySingleAction(int indent)
         {
             DrawIndent(indent);
-            Console.WriteLine("{0} {1}", this.name, this.npc.getName());
+            Console.WriteLine("{0} {1}", this.name, this.obj.getName());
             writeSubActions(indent);
         }
     }
@@ -104,22 +126,21 @@ namespace QuestGenerator
 
     public class Exchange : Action
     {
-        Object item;
         public Exchange()
         {
             this.name = "Exchange";
-            this.item= new Item();
+            this.obj= new Item();
         }
-        public Exchange(Object obj)
+        public Exchange(Object o)
         {
             this.name = "Exchange";
-            this.item = obj;
+            this.obj = o;
         }
 
         override public void DisplaySingleAction(int indent)
         {
             DrawIndent(indent);
-            Console.WriteLine("{0} {1}", this.name, this.item.getName());
+            Console.WriteLine("{0} {1}", this.name, this.obj.getName());
             writeSubActions(indent);
         }
     }
@@ -130,21 +151,26 @@ namespace QuestGenerator
         {
             this.name = "Explore/Check";
         }
+
+        public Explore(Object o)
+        {
+            this.name = "Explore/Check";
+            this.obj = o;
+        }
     }
 
     public class Gather : Action
     {
-        Object obj;
         public Gather()
         {
             this.name = "Gather/PickUp";
             this.obj = new Item();
         }
 
-        public Gather(Object gather)
+        public Gather(Object o)
         {
             this.name = "Gather/PickUp";
-            this.obj = gather;
+            this.obj = o;
         }
 
         override public void DisplaySingleAction(int indent)
@@ -159,12 +185,18 @@ namespace QuestGenerator
 
     public class Give : Action
     {
-        Object obj;
         public Give()
         {
             this.name = "Give";
             this.obj = new Item();
         }
+
+        public Give(Object o)
+        {
+            this.name = "Give";
+            this.obj = o;
+        }
+
         override public void DisplaySingleAction(int indent)
         {
             DrawIndent(indent);
@@ -175,26 +207,39 @@ namespace QuestGenerator
 
     public class Listen : Action
     {
-        Object npc;
         public Listen()
         {
             this.name = "Listen";
-            this.npc =new NPC();
+            this.obj = new NPC();
+        }
+
+        public Listen(Object o)
+        {
+            this.name = "Listen";
+            this.obj = o;
         }
 
         override public void DisplaySingleAction(int indent)
         {
             DrawIndent(indent);
-            Console.WriteLine("{0} to {1}", this.name, this.npc.getName());
+            Console.WriteLine("{0} to {1}", this.name, this.obj.getName());
             writeSubActions(indent);
         }
     }
 
     public class Read : Action
     {
+
         public Read()
         {
             this.name = "Read";
+            this.obj = new Item();
+        }
+
+        public Read(Object o)
+        {
+            this.name = "Read";
+            this.obj = o;
         }
     }
 
@@ -209,38 +254,43 @@ namespace QuestGenerator
 
     public class Report : Action
     {
-        Object npc;
         public Report()
         {
             this.name = "Report";
-            this.npc = new NPC();
+            this.obj = new NPC();
         }
-        public Report(Object obj)
+        public Report(Object o)
         {
-            this.npc = obj;
+            this.name = "Report";
+            this.obj = o;
         }
 
         override public void DisplaySingleAction(int indent)
         {
             DrawIndent(indent);
-            Console.WriteLine("{0} to {1}", this.name, this.npc.getName());
+            Console.WriteLine("{0} to {1}", this.name, this.obj.getName());
             writeSubActions(indent);
         }
     };
 
     public class Spy : Action
     {
-
-        Object npc;
         public Spy()
         {
             this.name = "Spy";
-            this.npc = new NPC();
+            this.obj = new NPC();
         }
+
+        public Spy(Object o)
+        {
+            this.name = "Spy";
+            this.obj = o;
+        }
+
         override public void DisplaySingleAction(int indent)
         {
             DrawIndent(indent);
-            Console.WriteLine("{0} on {1}", this.name, this.npc.getName());
+            Console.WriteLine("{0} on {1}", this.name, this.obj.getName());
             writeSubActions(indent);
         }
     };
@@ -256,22 +306,21 @@ namespace QuestGenerator
 
     public class Take : Action
     {
-        Object item;
         public Take()
         {
             this.name = "Take";
-            this.item = new Item();
+            this.obj = new Item();
         }
-        public Take(Object obj)
+        public Take(Object o)
         {
             this.name = "Take";
-            this.item = obj;
+            this.obj = o;
         }
 
         override public void DisplaySingleAction(int indent)
         {
             DrawIndent(indent);
-            Console.WriteLine("{0} {1}", this.name, this.item.getName());
+            Console.WriteLine("{0} {1}", this.name, this.obj.getName());
             writeSubActions(indent);
         }
     };
@@ -281,6 +330,12 @@ namespace QuestGenerator
         public Use()
         {
             this.name = "Use";
+            this.obj = new Item();
+        }
+        public Use(Object o)
+        {
+            this.name = "Use";
+            this.obj = o;
         }
     };
 }

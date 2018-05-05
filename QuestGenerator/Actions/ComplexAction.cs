@@ -8,7 +8,6 @@ namespace QuestGenerator
 {
     public class Get : Action
     {
-        Object obj;
         public Get()
         {
             this.name = "Get";
@@ -112,6 +111,13 @@ namespace QuestGenerator
             generateStartingAction();
         }
 
+        public Learn(Object o)
+        {
+            this.name = "Learn information";
+            this.obj = o;
+            generateStartingAction();
+        }
+
         void generateStartingAction()
         {
             int next_action = rnd1.Next(0, 3);
@@ -160,6 +166,15 @@ namespace QuestGenerator
             generateY();
         }
 
+        public GoTo(Object o)
+        {
+            this.name = "GoTo";
+            this.obj = o;
+            generateStartingAction();
+            generateX();
+            generateY();
+        }
+
         void generateStartingAction()
         {
             int next_action = rnd1.Next(0, 3);
@@ -196,7 +211,6 @@ namespace QuestGenerator
 
     public class Steal : Action
     {
-        Object obj;
         public Steal()
         {
             this.name = "Steal";
