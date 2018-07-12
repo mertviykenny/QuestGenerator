@@ -20,7 +20,17 @@ namespace QuestGenerator
         protected int indent = 0;
         protected uint actions_remained = 0;
         protected List<StartingActions> startingActions;
+        protected bool canGenerateSubquest =true;
 
+        public void setSubquestGeneration(Boolean n)
+        {
+            this.canGenerateSubquest = n;
+        }
+
+        public bool getSubquestGeneration()
+        {
+            return this.canGenerateSubquest;
+        }
 
         public SimpleQuest()
         {

@@ -8,7 +8,11 @@ namespace QuestGenerator
 {
     public abstract class StartingActions
     {
-        public abstract void Write(int indent);
+        public void Write(int indent) {
+            GenerateActions();
+            DisplayActions(indent);
+        }
+        protected abstract void GenerateActions();
         protected string name;
         protected List<Action> actions = new List<Action>();
 
@@ -28,12 +32,12 @@ namespace QuestGenerator
         {
             this.name = "GatherRawMaterials";
         }
-        override public void Write(int indent)
+
+        override protected void GenerateActions()
         {
             Item i = new Item();
             actions.Add(new GoTo(i));
             actions.Add(new Get(i));
-            DisplayActions(indent);
         }
     }
 
@@ -43,7 +47,7 @@ namespace QuestGenerator
         {
             this.name = "StealValuablesForResale";
         }
-        override public void Write(int indent)
+        override protected void GenerateActions()
         {
             Item i = new Item();
             NPC npc = new NPC();
@@ -51,7 +55,6 @@ namespace QuestGenerator
             actions.Add(new Steal(i));
             actions.Add(new GoTo(npc));
             actions.Add(new Exchange(i, npc));
-            DisplayActions(indent);
         }
     }
     public class Wealth_MakeValuablesForResale : StartingActions
@@ -60,10 +63,10 @@ namespace QuestGenerator
         {
             name = "MakeValuablesForResale";
         }
-        override public void Write(int indent)
+
+        protected override void GenerateActions()
         {
             actions.Add(new Repair());
-            DisplayActions(indent);
         }
     }
 
@@ -74,14 +77,14 @@ namespace QuestGenerator
         {
             name = "DeliverItemForStudy";
         }
-        override public void Write(int indent)
+
+        protected override void GenerateActions()
         {
             Item i = new Item();
             NPC npc = new NPC();
             actions.Add(new Get(i));
             actions.Add(new GoTo(npc));
             actions.Add(new Give(i));
-            DisplayActions(indent);
         }
     }
 
@@ -93,10 +96,9 @@ namespace QuestGenerator
         {
             name = "Spy";
         }
-        override public void Write(int indent)
+        protected override void GenerateActions()
         {
             actions.Add(new Spy());
-            DisplayActions(indent);
         }
     }
 
@@ -108,7 +110,8 @@ namespace QuestGenerator
         {
             name = "InterviewNPC";
         }
-        override public void Write(int indent)
+
+        protected override void GenerateActions()
         {
             NPC npc1 = new NPC();
             NPC npc2 = new NPC();
@@ -116,8 +119,6 @@ namespace QuestGenerator
             actions.Add(new Listen(npc1));
             actions.Add(new GoTo(npc2));
             actions.Add(new Report(npc2));
-            DisplayActions(indent);
-
         }
     };
     public class Knowledge_UseItemInTheField : StartingActions
@@ -126,7 +127,8 @@ namespace QuestGenerator
         {
             name = "UseItemInTheField";
         }
-        override public void Write(int indent)
+
+        protected override void GenerateActions()
         {
             Item i = new Item();
             NPC npc = new NPC();
@@ -136,8 +138,6 @@ namespace QuestGenerator
             actions.Add(new Use(i));
             actions.Add(new GoTo(npc2));
             actions.Add(new Give(i));
-            DisplayActions(indent);
-
         }
     };
 
@@ -148,14 +148,14 @@ namespace QuestGenerator
         {
             name = "ObtainLuxuries";
         }
-        override public void Write(int indent)
+
+        protected override void GenerateActions()
         {
             Item i = new Item();
             NPC npc = new NPC();
             actions.Add(new Get(i));
             actions.Add(new GoTo(npc));
             actions.Add(new Give(i));
-            DisplayActions(indent);
         }
     };
 
@@ -166,16 +166,15 @@ namespace QuestGenerator
         {
             name = "KillPests";
         }
-        override public void Write(int indent)
+
+        protected override void GenerateActions()
         {
             NPC npc1 = new NPC();
             NPC npc2 = new NPC();
-
             actions.Add(new GoTo(npc1));
             actions.Add(new Damage(npc1));
             actions.Add(new GoTo(npc2));
             actions.Add(new Report(npc2));
-            DisplayActions(indent);
         }
     };
 
@@ -186,14 +185,14 @@ namespace QuestGenerator
         {
             name = "ObtainRareItems";
         }
-        override public void Write(int indent)
+
+        protected override void GenerateActions()
         {
             Item i = new Item();
             NPC npc = new NPC();
             actions.Add(new Get(i));
             actions.Add(new GoTo(npc));
             actions.Add(new Give(npc));
-            DisplayActions(indent);
         }
     };
 
@@ -205,7 +204,7 @@ namespace QuestGenerator
         {
             name = "KillEnenmies";
         }
-        override public void Write(int indent)
+        protected override void GenerateActions()
         {
             NPC enemy = new NPC();
             NPC friend = new NPC();
@@ -213,7 +212,6 @@ namespace QuestGenerator
             actions.Add(new Kill(enemy));
             actions.Add(new GoTo(friend));
             actions.Add(new Report(friend));
-            DisplayActions(indent);
         }
     };
 
@@ -223,18 +221,17 @@ namespace QuestGenerator
         {
             name = "VisitDangerousPlace";
         }
-        override public void Write(int indent)
+
+        protected override void GenerateActions()
         {
             Item i1 = new Item();
             Item i2 = new Item();
             i1.setName("Place 1");
             i2.setName("Place 2");
             NPC npc = new NPC();
-
             actions.Add(new GoTo(i1));
             actions.Add(new GoTo(i2));
             actions.Add(new Report(npc));
-            DisplayActions(indent);
         }
     };
 
@@ -244,12 +241,12 @@ namespace QuestGenerator
         {
             name = "Revenge";
         }
-        override public void Write(int indent)
+
+        protected override void GenerateActions()
         {
             NPC npc = new NPC();
             actions.Add(new GoTo(npc));
             actions.Add(new Damage(npc));
-            DisplayActions(indent);
         }
     }
 
@@ -259,7 +256,8 @@ namespace QuestGenerator
         {
             name = "Capture1";
         }
-        override public void Write(int indent)
+
+        protected override void GenerateActions()
         {
             Item i = new Item();
             NPC enemy = new NPC();
@@ -269,7 +267,6 @@ namespace QuestGenerator
             actions.Add(new Use(i));
             actions.Add(new GoTo(friendly));
             actions.Add(new Give(enemy));
-            DisplayActions(indent);
         }
     }
 
@@ -279,19 +276,18 @@ namespace QuestGenerator
         {
             name = "Capture2";
         }
-        override public void Write(int indent)
+
+        protected override void GenerateActions()
         {
             Item i = new Item();
             NPC enemy = new NPC();
             NPC friendly = new NPC();
-
             actions.Add(new Get(i));
             actions.Add(new GoTo(enemy));
             actions.Add(new Use(i));
             actions.Add(new Capture(enemy));
             actions.Add(new GoTo(friendly));
             actions.Add(new Give(enemy));
-            DisplayActions(indent);
         }
     }
 
@@ -302,7 +298,8 @@ namespace QuestGenerator
         {
             name = "CheckOnNPC1";
         }
-        override public void Write(int indent)
+
+        protected override void GenerateActions()
         {
             NPC npc1 = new NPC();
             NPC npc2 = new NPC();
@@ -310,7 +307,6 @@ namespace QuestGenerator
             actions.Add(new Listen(npc1));
             actions.Add(new GoTo(npc2));
             actions.Add(new Report(npc2));
-            DisplayActions(indent);
         }
     }
 
@@ -321,7 +317,8 @@ namespace QuestGenerator
         {
             name = "CheckOnNPC2";
         }
-        override public void Write(int indent)
+
+        protected override void GenerateActions()
         {
             NPC npc1 = new NPC();
             NPC npc2 = new NPC();
@@ -330,7 +327,6 @@ namespace QuestGenerator
             actions.Add(new Take(i));
             actions.Add(new GoTo(npc2));
             actions.Add(new Give(i));
-            DisplayActions(indent);
         }
     }
 
@@ -340,14 +336,14 @@ namespace QuestGenerator
         {
             name = "RecoverLost";
         }
-        override public void Write(int indent)
+
+        protected override void GenerateActions()
         {
             Item i = new Item();
             NPC npc = new NPC();
             actions.Add(new Get(i));
             actions.Add(new GoTo(npc));
             actions.Add(new Give(npc));
-            DisplayActions(indent);
         }
     }
 
@@ -357,7 +353,8 @@ namespace QuestGenerator
         {
             name = "RescueCaptured";
         }
-        override public void Write(int indent)
+
+        protected override void GenerateActions()
         {
             NPC friendly = new NPC();
             NPC friendly2 = new NPC();
@@ -367,7 +364,6 @@ namespace QuestGenerator
             actions.Add(new Escort(friendly));
             actions.Add(new GoTo(friendly2));
             actions.Add(new Report(friendly2));
-            DisplayActions(indent);
         }
     }
 
@@ -378,7 +374,8 @@ namespace QuestGenerator
         {
             name = "Attack";
         }
-        override public void Write(int indent)
+
+        protected override void GenerateActions()
         {
             NPC friendly = new NPC();
             NPC enemy = new NPC();
@@ -386,7 +383,6 @@ namespace QuestGenerator
             actions.Add(new Damage(enemy));
             actions.Add(new GoTo(friendly));
             actions.Add(new Report(friendly));
-            DisplayActions(indent);
         }
     }
 
@@ -396,14 +392,14 @@ namespace QuestGenerator
         {
             name = "TreatOrRepair1";
         }
-        override public void Write(int indent)
+
+        protected override void GenerateActions()
         {
             NPC npc1 = new NPC();
             Item i = new Item();
             actions.Add(new Get(i));
             actions.Add(new GoTo(npc1));
             actions.Add(new Use(i));
-            DisplayActions(indent);
         }
     }
 
@@ -414,12 +410,12 @@ namespace QuestGenerator
         {
             name = "TreatOrRepair2";
         }
-        override public void Write(int indent)
+
+        protected override void GenerateActions()
         {
             NPC npc = new NPC();
             actions.Add(new GoTo(npc));
             actions.Add(new Repair(npc));
-            DisplayActions(indent);
         }
     }
 
@@ -429,14 +425,13 @@ namespace QuestGenerator
         {
             name = "CreateDiversion1";
         }
-        override public void Write(int indent)
+        protected override void GenerateActions()
         {
             Item i = new Item();
             NPC npc = new NPC();
             actions.Add(new Get(i));
             actions.Add(new GoTo(npc));
             actions.Add(new Use(i));
-            DisplayActions(indent);
         }
     }
 
@@ -446,12 +441,12 @@ namespace QuestGenerator
         {
             name = "CreateDiversion2";
         }
-        override public void Write(int indent)
+
+        protected override void GenerateActions()
         {
             NPC npc = new NPC();
             actions.Add(new GoTo(npc));
             actions.Add(new Damage(npc));
-            DisplayActions(indent);
         }
     }
 
@@ -461,12 +456,12 @@ namespace QuestGenerator
         {
             name = "AssembleFortification";
         }
-        override public void Write(int indent)
+
+        protected override void GenerateActions()
         {
             NPC npc = new NPC();
             actions.Add(new GoTo(npc));
             actions.Add(new Repair(npc));
-            DisplayActions(indent);
         }
     }
 
@@ -477,12 +472,12 @@ namespace QuestGenerator
         {
             name = "Guard";
         }
-        override public void Write(int indent)
+
+        protected override void GenerateActions()
         {
             NPC npc = new NPC();
             actions.Add(new GoTo(npc));
             actions.Add(new Defend(npc));
-            DisplayActions(indent);
         }
     }
 
@@ -492,12 +487,12 @@ namespace QuestGenerator
         {
             name = "Attack";
         }
-        override public void Write(int indent)
+
+        protected override void GenerateActions()
         {
             NPC npc = new NPC();
             actions.Add(new GoTo(npc));
             actions.Add(new Damage(npc));
-            DisplayActions(indent);
         }
     }
 
@@ -507,7 +502,8 @@ namespace QuestGenerator
         {
             name = "Steal";
         }
-        override public void Write(int indent)
+
+        protected override void GenerateActions()
         {
             NPC enemy = new NPC();
             Item i = new Item();
@@ -517,7 +513,6 @@ namespace QuestGenerator
             actions.Add(new Steal(i));
             actions.Add(new GoTo(npc));
             actions.Add(new Give(i));
-            DisplayActions(indent);
         }
     }
 
@@ -528,11 +523,11 @@ namespace QuestGenerator
         {
             name = "Assemble";
         }
-        override public void Write(int indent)
+
+        protected override void GenerateActions()
         {
             NPC npc = new NPC();
             actions.Add(new Repair(npc));
-            DisplayActions(indent);
         }
     }
 
@@ -543,14 +538,14 @@ namespace QuestGenerator
         {
             name = "Deliver";
         }
-        override public void Write(int indent)
+
+        protected override void GenerateActions()
         {
             NPC npc = new NPC();
             Item i = new Item();
             actions.Add(new Get(i));
             actions.Add(new GoTo(npc));
             actions.Add(new Give(i));
-            DisplayActions(indent);
         }
     }
 
@@ -561,11 +556,11 @@ namespace QuestGenerator
         {
             name = "Steal";
         }
-        override public void Write(int indent)
+
+        protected override void GenerateActions()
         {
             Item i = new Item();
             actions.Add(new Steal(i));
-            DisplayActions(indent);
         }
     }
 
@@ -575,13 +570,13 @@ namespace QuestGenerator
         {
             name = "Trade";
         }
-        override public void Write(int indent)
+
+        protected override void GenerateActions()
         {
             Item i = new Item();
             NPC npc = new NPC();
             actions.Add(new GoTo(npc));
             actions.Add(new Exchange(i, npc));
-            DisplayActions(indent);
         }
     }
 
