@@ -50,7 +50,7 @@ namespace QuestGenerator
                         subActions.Add(new GoTo(npc));
                         subQuest sq = new subQuest();
                         subActions.Add(sq);
-                        subActions.Add(new Exchange(obj,npc));
+                        subActions.Add(new Exchange(obj, npc));
                     }
                 }
             }
@@ -212,7 +212,7 @@ namespace QuestGenerator
         override public void DisplaySingleAction(int indent)
         {
             DrawIndent(indent);
-            Console.WriteLine("{0} {1}:{2}", this.name, this.x,this.y);
+            Console.WriteLine("{0} {1}:{2}", this.name, this.x, this.y);
             writeSubActions(indent);
         }
     };

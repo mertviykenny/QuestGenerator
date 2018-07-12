@@ -15,6 +15,7 @@ namespace QuestGenerator
             this.type = questType.Wealth;
         }
 
+
         override public void generateStrategy()
         {
             int current_strategy = rnd1.Next(0, 100);
@@ -86,10 +87,10 @@ namespace QuestGenerator
             if (current_strategy < 40)
                 startingActions.Add(new Reputation_KillEnenmies());
             else
-                if(current_strategy>=40 && current_strategy<70)
-                    startingActions.Add(new Reputation_ObtainRareItems());
-                else
-                    startingActions.Add(new Reputation_VisitDangerousPlace());
+                if (current_strategy >= 40 && current_strategy < 70)
+                startingActions.Add(new Reputation_ObtainRareItems());
+            else
+                startingActions.Add(new Reputation_VisitDangerousPlace());
         }
     }
 
@@ -107,22 +108,22 @@ namespace QuestGenerator
                 startingActions.Add(new Serenity_Revenge());
             else
             {
-                if(current_strategy < 28)
+                if (current_strategy < 28)
                     startingActions.Add(new Serenity_Capture1());
                 else
                     if (current_strategy < 35)
                     startingActions.Add(new Serenity_Capture2());
                 else
                         if (current_strategy < 45)
-                            startingActions.Add(new Serenity_CheckOnNPC1());
-                        else
+                    startingActions.Add(new Serenity_CheckOnNPC1());
+                else
                             if (current_strategy < 58)
-                                startingActions.Add(new Serenity_CheckOnNPC2());
-                            else
+                    startingActions.Add(new Serenity_CheckOnNPC2());
+                else
                                 if (current_strategy < 75)
-                                    startingActions.Add(new Serenity_RecoverLost());
-                                else
-                                    startingActions.Add(new Serenity_RescueCaptured());
+                    startingActions.Add(new Serenity_RecoverLost());
+                else
+                    startingActions.Add(new Serenity_RescueCaptured());
 
 
             }
@@ -194,13 +195,13 @@ namespace QuestGenerator
             if (current_strategy < 25)
                 startingActions.Add(new Equipment_Assemble());
             else
-                if(current_strategy<50)
-                    startingActions.Add(new Equipment_Deliver());
-                else
-                    if(current_strategy<75)
-                        startingActions.Add(new Equipment_Steal());
-                    else
-                        startingActions.Add(new Equipment_Trade());
+                if (current_strategy < 50)
+                startingActions.Add(new Equipment_Deliver());
+            else
+                    if (current_strategy < 75)
+                startingActions.Add(new Equipment_Steal());
+            else
+                startingActions.Add(new Equipment_Trade());
 
 
         }

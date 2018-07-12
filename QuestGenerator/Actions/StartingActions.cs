@@ -50,7 +50,7 @@ namespace QuestGenerator
             actions.Add(new GoTo(i));
             actions.Add(new Steal(i));
             actions.Add(new GoTo(npc));
-            actions.Add(new Exchange(i,npc));
+            actions.Add(new Exchange(i, npc));
             DisplayActions(indent);
         }
     }
@@ -110,7 +110,7 @@ namespace QuestGenerator
         }
         override public void Write(int indent)
         {
-            NPC npc1 = new NPC(); 
+            NPC npc1 = new NPC();
             NPC npc2 = new NPC();
             actions.Add(new GoTo(npc1));
             actions.Add(new Listen(npc1));
@@ -170,7 +170,7 @@ namespace QuestGenerator
         {
             NPC npc1 = new NPC();
             NPC npc2 = new NPC();
-            
+
             actions.Add(new GoTo(npc1));
             actions.Add(new Damage(npc1));
             actions.Add(new GoTo(npc2));
@@ -227,8 +227,8 @@ namespace QuestGenerator
         {
             Item i1 = new Item();
             Item i2 = new Item();
-            i1.setName( "Place 1");
-            i2.setName( "Place 2");
+            i1.setName("Place 1");
+            i2.setName("Place 2");
             NPC npc = new NPC();
 
             actions.Add(new GoTo(i1));
@@ -486,7 +486,7 @@ namespace QuestGenerator
         }
     }
 
-    public class Conquest_Attack:StartingActions
+    public class Conquest_Attack : StartingActions
     {
         public Conquest_Attack()
         {
@@ -501,7 +501,7 @@ namespace QuestGenerator
         }
     }
 
-    public class Conquest_Steal: StartingActions
+    public class Conquest_Steal : StartingActions
     {
         public Conquest_Steal()
         {
@@ -510,9 +510,9 @@ namespace QuestGenerator
         override public void Write(int indent)
         {
             NPC enemy = new NPC();
-            Item i=new Item();
+            Item i = new Item();
             i.setCoords(enemy);
-            NPC npc=new NPC();
+            NPC npc = new NPC();
             actions.Add(new GoTo(enemy));
             actions.Add(new Steal(i));
             actions.Add(new GoTo(npc));
@@ -522,7 +522,7 @@ namespace QuestGenerator
     }
 
 
-    public class Equipment_Assemble:StartingActions
+    public class Equipment_Assemble : StartingActions
     {
         public Equipment_Assemble()
         {
@@ -580,7 +580,7 @@ namespace QuestGenerator
             Item i = new Item();
             NPC npc = new NPC();
             actions.Add(new GoTo(npc));
-            actions.Add(new Exchange(i,npc));
+            actions.Add(new Exchange(i, npc));
             DisplayActions(indent);
         }
     }

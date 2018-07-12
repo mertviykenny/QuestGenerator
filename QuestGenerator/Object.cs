@@ -16,11 +16,11 @@ namespace QuestGenerator
         }
 
         public abstract string getName();
-        
+
     }
 
     //todo GATES/CHESTS/ETC
-    public abstract class Object:IObject
+    public abstract class Object : IObject
     {
         protected string name;
         protected int x;

@@ -39,10 +39,10 @@ namespace QuestGenerator
         override public void DisplaySingleAction(int indent)
         {
             DrawIndent(indent);
-            Console.WriteLine("{0} {1}", this.name,this.obj.getName());
+            Console.WriteLine("{0} {1}", this.name, this.obj.getName());
             writeSubActions(indent);
         }
-    }; 
+    };
 
 
 
@@ -131,9 +131,9 @@ namespace QuestGenerator
         public Exchange()
         {
             this.name = "Exchange";
-            this.obj= new Item();
+            this.obj = new Item();
         }
-        public Exchange(Object new_item,Object new_NPC)
+        public Exchange(Object new_item, Object new_NPC)
         {
             this.name = "Exchange";
             this.item = new_item;
@@ -143,7 +143,7 @@ namespace QuestGenerator
         override public void DisplaySingleAction(int indent)
         {
             DrawIndent(indent);
-            Console.WriteLine("{0} {1} with {2}", this.name, this.item.getName(),this.npc.getName());
+            Console.WriteLine("{0} {1} with {2}", this.name, this.item.getName(), this.npc.getName());
             writeSubActions(indent);
         }
     }
@@ -164,7 +164,7 @@ namespace QuestGenerator
         override public void DisplaySingleAction(int indent)
         {
             DrawIndent(indent);
-            if(this.obj!=null)
+            if (this.obj != null)
                 Console.WriteLine("{0} {1}", this.name, this.obj.getName());
             else
                 Console.WriteLine("{0}", this.name);
