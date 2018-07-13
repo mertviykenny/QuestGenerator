@@ -48,7 +48,7 @@ namespace QuestGenerator
                         subActions.Add(new Get(obj));
                         NPC npc = new NPC();
                         subActions.Add(new GoTo(npc));
-                        if (main.canGenerateSubquest)
+                        if (SimpleQuest.GetSubquestGeneration())
                         {
                             subQuest sq = new subQuest();
                             sq.quest.InitializeStartingStrategies();
@@ -138,7 +138,7 @@ namespace QuestGenerator
                     NPC npc = new NPC();
                     this.subActions.Add(new GoTo(npc));
                     this.subActions.Add(new Listen(npc));
-                    if (main.canGenerateSubquest)
+                    if(SimpleQuest.GetSubquestGeneration())
                     {
                         subQuest sq = new subQuest();
                         sq.quest.InitializeStartingStrategies();
@@ -164,7 +164,7 @@ namespace QuestGenerator
                         }
                         NPC npc = new NPC();
                         this.subActions.Add(new Get(obj));
-                        if (main.canGenerateSubquest)
+                        if (SimpleQuest.GetSubquestGeneration())
                         {
                             subQuest sq = new subQuest();
                             sq.quest.InitializeStartingStrategies();

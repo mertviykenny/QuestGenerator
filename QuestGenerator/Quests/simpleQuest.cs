@@ -16,6 +16,7 @@ namespace QuestGenerator
     {
         protected questType type;
         protected static Random rnd1 = null;
+        protected static Boolean canGenerateSubquests = true;
         protected int amount_of_starting_actions;
         protected int indent = 0;
         protected uint actions_remained = 0;
@@ -45,6 +46,16 @@ namespace QuestGenerator
             rnd1 = r;
             Action.Init(rnd1);
             IObject.Init(new Random(rnd1.Next()));
+        }
+
+        public static void SetSubquestGeneration(Boolean b)
+        {
+            canGenerateSubquests = b;
+        }
+
+        public static Boolean GetSubquestGeneration()
+        {
+            return canGenerateSubquests;
         }
 
         public void ChangeIndent(int new_value)

@@ -9,15 +9,17 @@ namespace QuestGenerator
     
     class main
     {
-        public static Boolean canGenerateSubquest = false;
         static void Main(string[] args)
         {
             try
             {
+
                 SimpleQuest.Init(new Random(122412));
+                SimpleQuest.SetSubquestGeneration(true);
 
                 WealthQuest q = new WealthQuest();
-                canGenerateSubquest = true;
+                
+                
                 q.changeAmountOfStartingActions(4);
                 q.InitializeStartingStrategies();
                 q.InitializeObjects();
