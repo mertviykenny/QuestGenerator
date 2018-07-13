@@ -18,8 +18,6 @@ namespace QuestGenerator
                 SimpleQuest.SetSubquestGeneration(true);
 
                 WealthQuest q = new WealthQuest();
-                
-                
                 q.changeAmountOfStartingActions(4);
                 q.InitializeStartingStrategies();
                 q.InitializeObjects();

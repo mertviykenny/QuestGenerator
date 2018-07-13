@@ -67,7 +67,8 @@ namespace QuestGenerator
 
         public override void GenerateActions()
         {
-            actions.Add(new Repair());
+            Item i = new Item();
+            actions.Add(new Repair(i));
         }
     }
 
@@ -414,9 +415,9 @@ namespace QuestGenerator
 
         public override void GenerateActions()
         {
-            NPC npc = new NPC();
-            actions.Add(new GoTo(npc));
-            actions.Add(new Repair(npc));
+            WallsOrGates wall = new WallsOrGates();
+            actions.Add(new GoTo(wall));
+            actions.Add(new Repair(wall));
         }
     }
 
@@ -429,9 +430,9 @@ namespace QuestGenerator
         public override void GenerateActions()
         {
             Item i = new Item();
-            NPC npc = new NPC();
+            WallsOrGates wall = new WallsOrGates();
             actions.Add(new Get(i));
-            actions.Add(new GoTo(npc));
+            actions.Add(new GoTo(wall));
             actions.Add(new Use(i));
         }
     }
@@ -445,9 +446,9 @@ namespace QuestGenerator
 
         public override void GenerateActions()
         {
-            NPC npc = new NPC();
-            actions.Add(new GoTo(npc));
-            actions.Add(new Damage(npc));
+            WallsOrGates wall = new WallsOrGates();
+            actions.Add(new GoTo(wall));
+            actions.Add(new Damage(wall));
         }
     }
 
@@ -460,9 +461,9 @@ namespace QuestGenerator
 
         public override void GenerateActions()
         {
-            NPC npc = new NPC();
-            actions.Add(new GoTo(npc));
-            actions.Add(new Repair(npc));
+            WallsOrGates wall = new WallsOrGates();
+            actions.Add(new GoTo(wall));
+            actions.Add(new Repair(wall));
         }
     }
 
@@ -527,8 +528,8 @@ namespace QuestGenerator
 
         public override void GenerateActions()
         {
-            NPC npc = new NPC();
-            actions.Add(new Repair(npc));
+            Item i = new Item();
+            actions.Add(new Repair(i));
         }
     }
 

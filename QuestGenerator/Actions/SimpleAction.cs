@@ -263,10 +263,11 @@ namespace QuestGenerator
         public Repair()
         {
             this.name = "Repair or create";
-            this.obj = new NPC();
+            this.obj = new WallsOrGates();
         }
         public Repair(Object o)
         {
+            this.name = "Repair or create";
             this.obj = o;
         }
     };

@@ -19,7 +19,6 @@ namespace QuestGenerator
 
     }
 
-    //todo GATES/CHESTS/ETC
     public abstract class Object : IObject
     {
         protected string name;
@@ -87,7 +86,7 @@ namespace QuestGenerator
                 }
             }
         }
-        protected string generateFragments(string name)
+        protected string generateFragmentNames(string name)
         {
             List<string> prefixes = new List<string>
             {
@@ -101,18 +100,33 @@ namespace QuestGenerator
     }
 
 
-
+    public class WallsOrGates : Object
+    {
+        public WallsOrGates()
+        {
+            generateWallName();
+            this.x = rnd1.Next(0, 100);
+            this.y = rnd1.Next(0, 100);
+        }
+        protected void generateWallName()
+        {
+            List<string> prefixes = new List<string> {"Old", "Broken", "Damaged", "Attacked","Requiring repair"};
+            List<string> names = new List<string> {"Gates","Walls"};
+            List<string> suffixes = new List<string>();
+            this.name = generateName(prefixes, names,suffixes);
+        }
+    }
 
     public class NPC : Object
     {
         public NPC()
         {
-            generateNPC();
+            generateNPCname();
             this.x = rnd1.Next(0, 100);
             this.y = rnd1.Next(0, 100);
         }
 
-        protected void generateNPC()
+        protected void generateNPCname()
         {
             List<string> prefixes = new List<string> { "Elder", "Magician", "Warrior", "Ancient", "Brilliant", "Seeker", "Timeless", "Unbound", "Friendly", "Betrayed" };
             List<string> names = new List<string> { "Bond", "Mankrik", "Meto", "Merayl", "Perculia", "Alyssia", "Chargla", "Dalron", "Daakara", "Kilnara" };
@@ -121,21 +135,16 @@ namespace QuestGenerator
         }
     }
 
-    public class Wall : Object
-    {
-
-    }
-
     public class Item : Object
     {
 
         public Item()
         {
-            generateItem();
+            GenerateItemName();
             this.x = rnd1.Next(0, 100);
             this.y = rnd1.Next(0, 100);
         }
-        protected void generateItem()
+        protected void GenerateItemName()
         {
             List<string> prefixes = new List<string> { "Magic", "Lost in time", "Stolen", "Sparkling", "Glooming", "Important", "Poisonous", "Powerfull", "Lost", "Mighty" };
             List<string> names = new List<string> { "Inscripted Stone", "Book", "Tome", "Diamond", "Note", "Sword", "Dagger", "Message", "Trap", "Spear" };
