@@ -46,11 +46,13 @@ namespace QuestGenerator
             Action.Init(rnd1);
             IObject.Init(new Random(rnd1.Next()));
         }
+
         public void ChangeIndent(int new_value)
         {
             this.indent = new_value;
         }
-        public void Generate()
+
+        public void InitializeStartingStrategies()
         {
             for (int i = 0; i < amount_of_starting_actions; i++)
             {

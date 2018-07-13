@@ -48,10 +48,13 @@ namespace QuestGenerator
                         subActions.Add(new Get(obj));
                         NPC npc = new NPC();
                         subActions.Add(new GoTo(npc));
-                        subQuest sq = new subQuest();
-                        sq.quest.Generate();
-                        sq.quest.InitializeObjects();
-                        subActions.Add(sq);
+                        if (main.canGenerateSubquest)
+                        {
+                            subQuest sq = new subQuest();
+                            sq.quest.InitializeStartingStrategies();
+                            sq.quest.InitializeObjects();
+                            subActions.Add(sq);
+                        }
                         subActions.Add(new Exchange(obj, npc));
                     }
                 }
@@ -98,7 +101,7 @@ namespace QuestGenerator
             DrawIndentWithDashes(indent);
             Console.Write("{0} started, ", this.name);
             writeSubActions(indent);
-            quest.Generate();
+            quest.InitializeStartingStrategies();
             quest.ChangeIndent(indent);
             quest.DisplayQuest();
             DrawIndentWithDashes(indent);
@@ -135,10 +138,13 @@ namespace QuestGenerator
                     NPC npc = new NPC();
                     this.subActions.Add(new GoTo(npc));
                     this.subActions.Add(new Listen(npc));
-                    subQuest sq = new subQuest();
-                    sq.quest.Generate();
-                    sq.quest.InitializeObjects();
-                    subActions.Add(sq);
+                    if (main.canGenerateSubquest)
+                    {
+                        subQuest sq = new subQuest();
+                        sq.quest.InitializeStartingStrategies();
+                        sq.quest.InitializeObjects();
+                        subActions.Add(sq);
+                    }
                     this.subActions.Add(new Listen(npc));
                 }
                 else
@@ -158,10 +164,13 @@ namespace QuestGenerator
                         }
                         NPC npc = new NPC();
                         this.subActions.Add(new Get(obj));
-                        subQuest sq = new subQuest();
-                        sq.quest.Generate();
-                        sq.quest.InitializeObjects();
-                        subActions.Add(sq);
+                        if (main.canGenerateSubquest)
+                        {
+                            subQuest sq = new subQuest();
+                            sq.quest.InitializeStartingStrategies();
+                            sq.quest.InitializeObjects();
+                            subActions.Add(sq);
+                        }
                         this.subActions.Add(new Give(obj));
                         this.subActions.Add(new Listen(npc));
                     }
