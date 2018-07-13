@@ -17,6 +17,7 @@ namespace QuestGenerator
                 WealthQuest q = new WealthQuest();
                 q.changeAmountOfStartingActions(4);
                 q.Generate();
+                q.InitializeObjects();
                 q.DisplayQuest();
             }
             catch (Exception e)

@@ -49,6 +49,8 @@ namespace QuestGenerator
                         NPC npc = new NPC();
                         subActions.Add(new GoTo(npc));
                         subQuest sq = new subQuest();
+                        sq.quest.Generate();
+                        sq.quest.InitializeObjects();
                         subActions.Add(sq);
                         subActions.Add(new Exchange(obj, npc));
                     }
@@ -134,6 +136,8 @@ namespace QuestGenerator
                     this.subActions.Add(new GoTo(npc));
                     this.subActions.Add(new Listen(npc));
                     subQuest sq = new subQuest();
+                    sq.quest.Generate();
+                    sq.quest.InitializeObjects();
                     subActions.Add(sq);
                     this.subActions.Add(new Listen(npc));
                 }
@@ -155,6 +159,8 @@ namespace QuestGenerator
                         NPC npc = new NPC();
                         this.subActions.Add(new Get(obj));
                         subQuest sq = new subQuest();
+                        sq.quest.Generate();
+                        sq.quest.InitializeObjects();
                         subActions.Add(sq);
                         this.subActions.Add(new Give(obj));
                         this.subActions.Add(new Listen(npc));

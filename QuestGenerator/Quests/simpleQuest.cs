@@ -86,6 +86,14 @@ namespace QuestGenerator
             }
         }
 
+
+        public void InitializeObjects()
+        {
+            for (int i = 0; i < amount_of_starting_actions; i++)
+            {
+                startingActions[i].GenerateActions();
+            }
+        }
         public void DisplayQuest()
         {
             Console.WriteLine("Type:{0}", type);
