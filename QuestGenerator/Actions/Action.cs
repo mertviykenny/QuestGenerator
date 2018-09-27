@@ -10,6 +10,7 @@ namespace QuestGenerator
     {
 
         abstract public void DisplaySingleAction(int indent);
+        abstract public Object GetNPC();
     }
     public abstract class Action : IAction
     {
@@ -53,9 +54,19 @@ namespace QuestGenerator
                     a.DisplaySingleAction(indent);
                 });
         }
-        protected Object getObject()
+        public Object GetObject()
         {
             return this.obj;
+        }
+
+        override public Object GetNPC()
+        {
+            return null;
+        }
+   
+        public List<Action> GetAllSubActions()
+        {
+            return subActions;
         }
     };
 }

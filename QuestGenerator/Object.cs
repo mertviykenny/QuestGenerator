@@ -60,6 +60,14 @@ namespace QuestGenerator
             this.x = o.x;
             this.y = o.y;
         }
+        public int getXCoord()
+        {
+            return this.x;
+        }
+        public int getYCoord()
+        {
+            return this.y;
+        }
         protected string generateName(List<string> prefixes, List<string> names, List<string> suffixes)
         {
             int action = rnd1.Next(0, 10);

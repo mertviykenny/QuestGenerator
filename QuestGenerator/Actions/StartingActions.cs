@@ -25,6 +25,11 @@ namespace QuestGenerator
                 a.DisplaySingleAction(indent);
             });
         }
+
+        public List<Action> GetActions()
+        {
+            return actions;
+        }
     };
 
     public class Wealth_GatherRawMaterials : StartingActions
