@@ -146,6 +146,12 @@ namespace QuestGenerator
             Console.WriteLine("{0} {1} with {2}", this.name, this.item.getName(), this.npc.getName());
             writeSubActions(indent);
         }
+
+        override public Object GetNPC()
+        {
+            return npc;
+        }
+
     }
 
     public class Explore : Action

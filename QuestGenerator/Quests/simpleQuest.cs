@@ -118,7 +118,45 @@ namespace QuestGenerator
             }
         }
 
+        public List<Object> GetAllObjects()
+        {
+            List<Object> objects = new List<Object>();
+            foreach(var startingAction in startingActions)
+            {
+                foreach(var action in startingAction.GetActions())
+                {
+                    Object actionObj = action.GetObject();
+                    if (actionObj != null && !objects.Contains(actionObj))
+                        objects.Add(actionObj);
+                    if (action is Exchange)
+                    {
+                        Object actionNPC = action.GetNPC();
+                        if(actionNPC != null && !objects.Contains(actionNPC))
+                            objects.Add(actionNPC);
+                    }
+                    foreach(var subAction in action.GetAllSubActions())
+                    {
+                        Object subActionObj = subAction.GetObject();
+                        if (subActionObj != null && !objects.Contains(subActionObj))
+                            objects.Add(subActionObj);
+                        if (subAction is Exchange)
+                        {
+                            Object subActionNPC = subAction.GetNPC();
+                            if (subActionNPC != null && !objects.Contains(subActionNPC))
+                                objects.Add(subActionNPC);
+                        }
+                    }
+                }
+            }
 
+            return objects;
+        }
+
+        public void PrintAllObjects()
+        {
+            foreach (var obj in this.GetAllObjects())
+                Console.WriteLine(obj.getName() + " x coord: " + obj.getXCoord() + " y coord:" + obj.getYCoord());
+        }
 
     };
 

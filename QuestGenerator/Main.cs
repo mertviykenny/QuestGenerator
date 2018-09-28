@@ -22,6 +22,7 @@ namespace QuestGenerator
                 q.InitializeStartingStrategies();
                 q.InitializeObjects();
                 q.DisplayQuest();
+                q.PrintAllObjects();
             }
             catch (Exception e)
             {
